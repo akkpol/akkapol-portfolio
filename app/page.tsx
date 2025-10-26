@@ -1,6 +1,6 @@
 // Next.js Profile Page powered by LinkedIn Resume (Auto-filled from PDF)
 'use client';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Linkedin } from 'lucide-react';
 import { linkedInData } from '@/data/profile';
@@ -12,9 +12,7 @@ import ThemeToggle from '@/components/ThemeToggle';
 import { validateProfileData } from '@/utils/validation';
 
 export default function ProfilePage() {
-  const [dark, setDark] = useState(false);
-  const [bannerUrl, setBannerUrl] = useState('/Evan Watzon.png');
-  const [isValid, setIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(true); // Assume valid until checked
   const cardRef = useRef<HTMLDivElement>(null);
 
   // Validate profile data on mount
@@ -22,30 +20,11 @@ export default function ProfilePage() {
     try {
       const valid = validateProfileData(linkedInData);
       setIsValid(valid);
-      if (!valid) {
-        console.error('Profile data validation failed');
-      }
     } catch (error) {
       console.error('Error validating profile data:', error);
       setIsValid(false);
     }
   }, []);
-
-  useEffect(() => {
-    const test = new Image();
-    test.src = '/Evan Watzon.png';
-    test.onload = () => setBannerUrl('/Evan Watzon.png');
-    test.onerror = () => setBannerUrl('/banner.png');
-  }, []);
-
-  // Update body class when dark mode changes
-  useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [dark]);
 
   // Early return if data is invalid
   if (!isValid) {
@@ -65,34 +44,33 @@ export default function ProfilePage() {
 
   const b = linkedInData.basics;
 
-  let ticking = false;
-  function onMouseMove(e: React.MouseEvent) {
-    try {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        try {
-          const el = cardRef.current;
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            const rx = (y / rect.height) * -6;
-            const ry = (x / rect.width) * 6;
-            el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-          }
-        } catch (error) {
-          console.error('Error in mouse move animation:', error);
-        } finally {
-          ticking = false;
-        }
-      });
-    } catch (error) {
-      console.error('Error in onMouseMove:', error);
-    }
-  }
+  const onMouseMove = useCallback((e: React.MouseEvent) => {
+    let ticking = false;
+    if (ticking) return;
 
-  function onMouseLeave() {
+    ticking = true;
+    requestAnimationFrame(() => {
+      const el = cardRef.current;
+      if (!el) {
+        ticking = false;
+        return;
+      }
+      try {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const rx = (y / rect.height) * -6;
+        const ry = (x / rect.width) * 6;
+        el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+      } catch (error) {
+        console.error('Error in mouse move animation:', error);
+      } finally {
+        ticking = false;
+      }
+    });
+  }, []);
+
+  const onMouseLeave = useCallback(() => {
     try {
       const el = cardRef.current;
       if (!el) return;
@@ -100,7 +78,7 @@ export default function ProfilePage() {
     } catch (error) {
       console.error('Error in onMouseLeave:', error);
     }
-  }
+  }, []);
 
   return (
     <main className="min-h-screen">
@@ -111,7 +89,7 @@ export default function ProfilePage() {
             <a className="hover:underline" href="#experience">Experience</a>
             <a className="hover:underline" href="#skills">Skills</a>
             <a className="hover:underline" href="#certs">Certifications</a>
-            <ThemeToggle dark={dark} onToggle={() => setDark(!dark)} />
+            <ThemeToggle />
           </div>
         </nav>
       </header>
@@ -131,8 +109,8 @@ export default function ProfilePage() {
               <h1 className="text-4xl md:text-5xl font-black tracking-tight gradient-text-blue">{b.headline}</h1>
               <p className="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">{b.about}</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                {b.keywords.map((k, i) => (
-                  <span key={i} className="inline-flex items-center px-2.5 py-1 rounded-full text-xs border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
+                {b.keywords.map((k) => (
+                  <span key={k} className="inline-flex items-center px-2.5 py-1 rounded-full text-xs border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300">
                     {k}
                   </span>
                 ))}
@@ -155,15 +133,10 @@ export default function ProfilePage() {
           <div className="mt-10 overflow-hidden whitespace-nowrap border-y py-2 text-sm">
             <div className="inline-block animate-[marquee_18s_linear_infinite]">
               {[...Array(2)].map((_, loop) => (
-                <span key={loop} className="mr-10">
-                  <span className="mx-3">⚡ React</span>
-                  <span className="mx-3">Next.js</span>
-                  <span className="mx-3">SharePoint</span>
-                  <span className="mx-3">C#</span>
-                  <span className="mx-3">.NET</span>
-                  <span className="mx-3">Power BI</span>
-                  <span className="mx-3">Power Automate</span>
-                  <span className="mx-3">SCADA</span>
+                <span key={loop} className="mr-10" aria-hidden={loop > 0}>
+                  {linkedInData.skills.map((skill) => (
+                    <span key={skill.name} className="mx-3">{skill.name}</span>
+                  ))}
                 </span>
               ))}
             </div>
@@ -174,23 +147,23 @@ export default function ProfilePage() {
       <section id="experience" className="max-w-6xl mx-auto px-6 py-12">
         <h2 className="text-2xl font-bold mb-6 gradient-text">Experience</h2>
         {linkedInData.experience.map((exp, i) => (
-          <ExperienceCard key={i} experience={exp} index={i} />
+          <ExperienceCard key={exp.company + exp.startDate} experience={exp} index={i} />
         ))}
       </section>
 
       <section id="skills" className="max-w-6xl mx-auto px-6 py-12">
         <h2 className="text-2xl font-bold mb-6 gradient-text-purple">Skills</h2>
         <div className="grid md:grid-cols-2 gap-5">
-          {linkedInData.skills.map((s, i) => (
-            <SkillCard key={i} skill={s} index={i} />
+          {linkedInData.skills.map((skill, i) => (
+            <SkillCard key={skill.name} skill={skill} index={i} />
           ))}
         </div>
       </section>
 
       <section id="certs" className="max-w-6xl mx-auto px-6 py-12">
         <h2 className="text-2xl font-bold mb-6 gradient-text-teal">Certifications</h2>
-        {linkedInData.certifications.map((c, i) => (
-          <CertificationCard key={i} certification={c} index={i} />
+        {linkedInData.certifications.map((cert, i) => (
+          <CertificationCard key={cert.name} certification={cert} index={i} />
         ))}
       </section>
 
@@ -199,10 +172,6 @@ export default function ProfilePage() {
           <p>© {new Date().getFullYear()} {b.name}. Built with Next.js · Tailwind · Framer Motion.</p>
         </div>
       </footer>
-
-      <style jsx global>{`
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-      `}</style>
     </main>
   );
 }
