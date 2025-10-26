@@ -94,10 +94,10 @@ export default function ProfilePage() {
   }
 
   return (
-    <main className={(dark ? 'dark ' : '') + 'min-h-screen bg-gradient-to-b from-gray-50 to-white text-gray-900 dark:from-gray-900 dark:to-gray-950 dark:text-gray-50'}>
+    <main className={(dark ? 'dark ' : '') + 'min-h-screen bg-gradient-to-b from-gray-50 via-blue-50/30 to-white text-gray-900 dark:from-gray-900 dark:via-purple-900/20 dark:to-gray-950 dark:text-gray-50'}>
       <header className="sticky top-0 backdrop-blur bg-white/70 dark:bg-black/30 border-b z-10">
         <nav className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-          <a href="#" className="font-semibold tracking-tight">{b.name}</a>
+          <a href="#" className="font-semibold tracking-tight gradient-text">{b.name}</a>
           <div className="flex items-center gap-4 text-sm">
             <a className="hover:underline" href="#experience">Experience</a>
             <a className="hover:underline" href="#skills">Skills</a>
@@ -108,7 +108,7 @@ export default function ProfilePage() {
       </header>
 
       <section className="relative">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/70 to-white via-white/60 dark:from-gray-900/70 dark:via-gray-900/60 dark:to-gray-950" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white/90 to-white via-blue-50/40 dark:from-gray-900/90 dark:via-purple-900/20 dark:to-gray-950" />
         <div className="absolute inset-0 -z-20 bg-no-repeat bg-cover bg-center opacity-80 dark:opacity-60" style={{ backgroundImage: `url('${bannerUrl}')` }} />
 
         <div className="max-w-6xl mx-auto px-6 pt-12 pb-10">
@@ -116,12 +116,12 @@ export default function ProfilePage() {
             <div onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} className="[perspective:1000px]">
               <div ref={cardRef} className="rounded-2xl border bg-white/70 dark:bg-white/10 shadow-xl p-3 transition-transform will-change-transform">
                 <ProfileImage src="/profile.jpg" alt={b.name} />
-                <div className="mt-3 text-center text-sm text-gray-700 dark:text-gray-200">Ready to ship 🚀</div>
+                <div className="mt-3 text-center text-sm gradient-text-blue font-semibold">Ready to ship 🚀</div>
               </div>
             </div>
 
             <div>
-              <h1 className="text-4xl md:text-5xl font-black tracking-tight">{b.headline}</h1>
+              <h1 className="text-4xl md:text-5xl font-black tracking-tight gradient-text-blue">{b.headline}</h1>
               <p className="mt-3 text-gray-700 dark:text-gray-200 leading-relaxed">{b.about}</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {b.keywords.map((k, i) => (
@@ -165,14 +165,14 @@ export default function ProfilePage() {
       </section>
 
       <section id="experience" className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold mb-6">Experience</h2>
+        <h2 className="text-2xl font-bold mb-6 gradient-text">Experience</h2>
         {linkedInData.experience.map((exp, i) => (
           <ExperienceCard key={i} experience={exp} index={i} />
         ))}
       </section>
 
       <section id="skills" className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold mb-6">Skills</h2>
+        <h2 className="text-2xl font-bold mb-6 gradient-text-purple">Skills</h2>
         <div className="grid md:grid-cols-2 gap-5">
           {linkedInData.skills.map((s, i) => (
             <SkillCard key={i} skill={s} index={i} />
@@ -181,7 +181,7 @@ export default function ProfilePage() {
       </section>
 
       <section id="certs" className="max-w-6xl mx-auto px-6 py-12">
-        <h2 className="text-2xl font-bold mb-6">Certifications</h2>
+        <h2 className="text-2xl font-bold mb-6 gradient-text-teal">Certifications</h2>
         {linkedInData.certifications.map((c, i) => (
           <CertificationCard key={i} certification={c} index={i} />
         ))}
