@@ -38,6 +38,15 @@ export default function ProfilePage() {
     test.onerror = () => setBannerUrl('/banner.png');
   }, []);
 
+  // Update body class when dark mode changes
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [dark]);
+
   // Early return if data is invalid
   if (!isValid) {
     return (
@@ -92,15 +101,6 @@ export default function ProfilePage() {
       console.error('Error in onMouseLeave:', error);
     }
   }
-
-  // Update body class when dark mode changes
-  useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [dark]);
 
   return (
     <main className="min-h-screen">
