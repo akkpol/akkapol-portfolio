@@ -1,0 +1,52 @@
+import { LinkedInData } from '@/types';
+
+export const linkedInData: LinkedInData = {
+  basics: {
+    name: 'Akkapol Kumpapug',
+    headline: 'IT Developer | JS, React, Next.js, C#, .NET | SharePoint',
+    about:
+      'Information Technology Developer with a strong focus on problem-solving and creative solutions. Experienced in SharePoint Administration, Frontend Development (React, Vue, Next.js), and Data Analysis (Power BI, Power Automate). Passionate about learning new technologies and applying them in innovative ways to deliver value.',
+    location: 'Nonthaburi, Thailand',
+    email: 'akkapol.kumpapug@gmail.com',
+    socials: {
+      linkedin: 'https://www.linkedin.com/in/akkapol-kumpapug',
+    },
+    keywords: ['SharePoint', 'JavaScript', 'React', 'Next.js', 'C#', '.NET', 'Power BI', 'Power Automate', 'SCADA']
+  },
+  experience: [
+    {
+      company: 'C.C.S. ADVANCE TECH. CO., LTD.',
+      title: 'Information Technology Software Developer',
+      startDate: '2023-11',
+      endDate: 'Present',
+      location: 'Nonthaburi, Thailand',
+      highlights: [
+        'Developed and maintained internal systems using SharePoint On-Premise.',
+        'Enhanced automation workflows using Power Automate and Power BI dashboards.',
+        'Collaborated on frontend projects using React and Next.js frameworks.'
+      ],
+    },
+  ],
+  skills: [
+    { name: 'SharePoint', level: 90 },
+    { name: 'JavaScript / React / Next.js', level: 85 },
+    { name: 'C# / .NET', level: 80 },
+    { name: 'Python', level: 70 },
+    { name: 'Power BI', level: 75 },
+    { name: 'SCADA', level: 60 }
+  ],
+  certifications: [
+    { name: 'Fullstack JavaScript Web Development', issuer: 'LinkedIn Learning', year: '2024' },
+    { name: 'Development of SCADA Systems for Production Processes', issuer: 'Training Program', year: '2024' },
+    { name: 'Data Analysis with Power BI', issuer: 'Microsoft Learn', year: '2024' }
+  ],
+  education: [
+    {
+      institution: 'Chandrakasem Rajabhat University',
+      degree: "Bachelor's Degree in Computer Science",
+      startDate: '2008',
+      endDate: '2014'
+    }
+  ]
+};
+

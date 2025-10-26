@@ -2,95 +2,19 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Linkedin, Award, Briefcase, CalendarDays } from 'lucide-react';
-
-const linkedInData = {
-  basics: {
-    name: 'Akkapol Kumpapug',
-    headline: 'IT Developer | JS, React, Next.js, C#, .NET | SharePoint',
-    about:
-      'Information Technology Developer with a strong focus on problem-solving and creative solutions. Experienced in SharePoint Administration, Frontend Development (React, Vue, Next.js), and Data Analysis (Power BI, Power Automate). Passionate about learning new technologies and applying them in innovative ways to deliver value.',
-    location: 'Nonthaburi, Thailand',
-    email: 'akkapol.kumpapug@gmail.com',
-    socials: {
-      linkedin: 'https://www.linkedin.com/in/akkapol-kumpapug',
-    },
-    keywords: ['SharePoint', 'JavaScript', 'React', 'Next.js', 'C#', '.NET', 'Power BI', 'Power Automate', 'SCADA']
-  },
-  experience: [
-    {
-      company: 'C.C.S. ADVANCE TECH. CO., LTD.',
-      title: 'Information Technology Software Developer',
-      startDate: '2023-11',
-      endDate: 'Present',
-      location: 'Nonthaburi, Thailand',
-      highlights: [
-        'Developed and maintained internal systems using SharePoint On-Premise.',
-        'Enhanced automation workflows using Power Automate and Power BI dashboards.',
-        'Collaborated on frontend projects using React and Next.js frameworks.'
-      ],
-    },
-  ],
-  skills: [
-    { name: 'SharePoint', level: 90 },
-    { name: 'JavaScript / React / Next.js', level: 85 },
-    { name: 'C# / .NET', level: 80 },
-    { name: 'Python', level: 70 },
-    { name: 'Power BI', level: 75 },
-    { name: 'SCADA', level: 60 }
-  ],
-  certifications: [
-    { name: 'Fullstack JavaScript Web Development', issuer: 'LinkedIn Learning', year: '2024' },
-    { name: 'Development of SCADA Systems for Production Processes', issuer: 'Training Program', year: '2024' },
-    { name: 'Data Analysis with Power BI', issuer: 'Microsoft Learn', year: '2024' }
-  ],
-  education: [
-    {
-      institution: 'Chandrakasem Rajabhat University',
-      degree: "Bachelor's Degree in Computer Science",
-      startDate: '2008',
-      endDate: '2014'
-    }
-  ]
-};
-
-function formatDate(isoMonth) {
-  if (!isoMonth) return '';
-  if (typeof isoMonth === 'string' && isoMonth.toLowerCase() === 'present') return 'Present';
-  const parts = String(isoMonth).split('-');
-  if (parts.length < 2) return String(isoMonth);
-  const [y, m] = parts;
-  const d = new Date(Number(y), Number(m) - 1 || 0, 1);
-  return isNaN(d.getTime()) ? String(isoMonth) : d.toLocaleString('en-US', { month: 'short', year: 'numeric' });
-}
-
-function Progress({ value }) {
-  const v = Math.max(0, Math.min(100, Number(value) || 0));
-  return (
-    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-      <div className="h-full bg-gray-900" style={{ width: `${v}%` }} />
-    </div>
-  );
-}
-
-function ProfileImage({ src, alt }) {
-  const [error, setError] = useState(false);
-  return (
-    <img
-      src={error ? 'https://via.placeholder.com/560x560?text=Profile' : src}
-      alt={alt}
-      onError={() => setError(true)}
-      className="w-full aspect-square object-cover rounded-xl"
-    />
-  );
-}
+import { Mail, MapPin, Linkedin } from 'lucide-react';
+import { linkedInData } from '@/data/profile';
+import ProfileImage from '@/components/ProfileImage';
+import ExperienceCard from '@/components/ExperienceCard';
+import SkillCard from '@/components/SkillCard';
+import CertificationCard from '@/components/CertificationCard';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function ProfilePage() {
   const b = linkedInData.basics;
   const [dark, setDark] = useState(false);
   const [bannerUrl, setBannerUrl] = useState('/Evan Watzon.png');
-
-  const cardRef = useRef(null);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const test = new Image();
@@ -100,7 +24,7 @@ export default function ProfilePage() {
   }, []);
 
   let ticking = false;
-  function onMouseMove(e) {
+  function onMouseMove(e: React.MouseEvent) {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
@@ -132,9 +56,7 @@ export default function ProfilePage() {
             <a className="hover:underline" href="#experience">Experience</a>
             <a className="hover:underline" href="#skills">Skills</a>
             <a className="hover:underline" href="#certs">Certifications</a>
-            <button onClick={() => setDark(!dark)} className="px-3 py-1 rounded-full border hover:shadow">
-              {dark ? 'Light' : 'Dark'}
-            </button>
+            <ThemeToggle dark={dark} onToggle={() => setDark(!dark)} />
           </div>
         </nav>
       </header>
@@ -156,7 +78,7 @@ export default function ProfilePage() {
               <h1 className="text-4xl md:text-5xl font-black tracking-tight">{b.headline}</h1>
               <p className="mt-3 text-gray-700 dark:text-gray-200 leading-relaxed">{b.about}</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                {linkedInData.basics.keywords.map((k, i) => (
+                {b.keywords.map((k, i) => (
                   <span key={i} className="inline-flex items-center px-2.5 py-1 rounded-full text-xs border bg-white/70 dark:bg-white/5">
                     {k}
                   </span>
@@ -164,9 +86,15 @@ export default function ProfilePage() {
               </div>
 
               <div className="mt-6 flex flex-wrap gap-3 text-sm">
-                <a className="inline-flex items-center gap-2 px-4 py-2 rounded-full border hover:shadow" href={`mailto:${b.email}`}><Mail size={16} />Contact</a>
-                <a className="inline-flex items-center gap-2 px-4 py-2 rounded-full border hover:shadow" href={b.socials.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16} />LinkedIn</a>
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border"><MapPin size={16} />{b.location}</span>
+                <a className="inline-flex items-center gap-2 px-4 py-2 rounded-full border hover:shadow" href={`mailto:${b.email}`}>
+                  <Mail size={16} />Contact
+                </a>
+                <a className="inline-flex items-center gap-2 px-4 py-2 rounded-full border hover:shadow" href={b.socials.linkedin} target="_blank" rel="noreferrer">
+                  <Linkedin size={16} />LinkedIn
+                </a>
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border">
+                  <MapPin size={16} />{b.location}
+                </span>
               </div>
             </div>
           </motion.div>
@@ -193,16 +121,7 @@ export default function ProfilePage() {
       <section id="experience" className="max-w-6xl mx-auto px-6 py-12">
         <h2 className="text-2xl font-bold mb-6">Experience</h2>
         {linkedInData.experience.map((exp, i) => (
-          <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }} className="mb-6 border rounded-2xl p-5 bg-white/70 dark:bg-white/5">
-            <h3 className="font-semibold flex items-center gap-2"><Briefcase size={18} />{exp.title}</h3>
-            <p className="text-gray-700 dark:text-gray-300">{exp.company}</p>
-            <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
-              <CalendarDays size={14} /> {formatDate(exp.startDate)} — {formatDate(exp.endDate)} · {exp.location}
-            </p>
-            <ul className="mt-3 list-disc pl-5 text-sm text-gray-700 dark:text-gray-200 space-y-1">
-              {exp.highlights.map((h, idx) => <li key={idx}>{h}</li>)}
-            </ul>
-          </motion.div>
+          <ExperienceCard key={i} experience={exp} index={i} />
         ))}
       </section>
 
@@ -210,15 +129,7 @@ export default function ProfilePage() {
         <h2 className="text-2xl font-bold mb-6">Skills</h2>
         <div className="grid md:grid-cols-2 gap-5">
           {linkedInData.skills.map((s, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }} className="rounded-2xl border p-5 bg-white/70 dark:bg-white/5">
-              <div className="flex justify-between text-sm font-medium">
-                <span>{s.name}</span>
-                <span>{s.level}%</span>
-              </div>
-              <div className="mt-3 w-full h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
-                <div className="h-full bg-gray-900 dark:bg-gray-100" style={{ width: `${Math.max(0, Math.min(100, Number(s.level) || 0))}%` }} />
-              </div>
-            </motion.div>
+            <SkillCard key={i} skill={s} index={i} />
           ))}
         </div>
       </section>
@@ -226,13 +137,7 @@ export default function ProfilePage() {
       <section id="certs" className="max-w-6xl mx-auto px-6 py-12">
         <h2 className="text-2xl font-bold mb-6">Certifications</h2>
         {linkedInData.certifications.map((c, i) => (
-          <motion.div key={i} initial={{ scale: 0.95, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ type: 'spring', stiffness: 120 }} className="flex items-center gap-3 border rounded-2xl p-4 bg-white/70 dark:bg-white/5 mb-3">
-            <Award size={18} />
-            <div>
-              <p className="font-medium">{c.name}</p>
-              <p className="text-sm text-gray-700 dark:text-gray-300">{c.issuer} · {c.year}</p>
-            </div>
-          </motion.div>
+          <CertificationCard key={i} certification={c} index={i} />
         ))}
       </section>
 
