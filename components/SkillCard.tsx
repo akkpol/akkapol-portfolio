@@ -1,3 +1,4 @@
+'use client';
 import { motion } from 'framer-motion';
 import { Skill } from '@/types';
 import ProgressBar from './ProgressBar';

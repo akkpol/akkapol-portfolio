@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 
 interface ThemeToggleProps {
   dark: boolean;
@@ -17,4 +16,3 @@ export default function ThemeToggle({ dark, onToggle }: ThemeToggleProps) {
     </button>
   );
 }
-

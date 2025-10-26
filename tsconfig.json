@@ -22,10 +22,7 @@
         "./*"
       ]
     },
-    "types": [
-      "react",
-      "react-dom"
-    ],
+    "types": ["node"],
     "incremental": true,
     "plugins": [
       {

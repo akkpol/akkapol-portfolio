@@ -1,3 +1,4 @@
+'use client';
 import { motion } from 'framer-motion';
 import { Briefcase, CalendarDays } from 'lucide-react';
 import { Experience } from '@/types';
