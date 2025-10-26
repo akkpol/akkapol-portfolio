@@ -118,8 +118,8 @@ export default function DronaldDuckRunner() {
       {!playing && !gameOver && (
         <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm rounded-2xl">
           <div className="text-center p-6 bg-white/90 dark:bg-gray-900/90 rounded-2xl max-w-md">
-            <div className="text-6xl mb-4">🦆</div>
-            <h3 className="text-2xl font-bold mb-2 gradient-text-blue">โดโรน่าโดโร Runner</h3>
+            <div className="text-6xl mb-4">🧡</div>
+            <h3 className="text-2xl font-bold mb-2 gradient-text-blue">President Trump Runner</h3>
             <p className="text-sm mb-4">กด SPACE หรือคลิกเพื่อกระโดด</p>
             <button
               onClick={(e) => {
@@ -142,16 +142,15 @@ export default function DronaldDuckRunner() {
         )}
       </div>
 
-      {/* Droid Gerald (โดโรน่าโดโร) */}
+      {/* President Trump */}
       <div
         className="absolute text-6xl transition-all duration-600"
         style={{
           left: '80px',
           bottom: isJumping ? '200px' : '120px',
-          transform: 'scaleX(-1)',
         }}
       >
-        🦆
+        🧡
       </div>
 
       {/* Obstacles */}
