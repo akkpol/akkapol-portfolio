@@ -149,22 +149,15 @@ export default function TrumpRunner() {
         )}
       </div>
 
-      {/* Character */}
+      {/* Character - using emoji for now, user can replace with PNG later */}
       <div
-        className="absolute transition-all duration-600"
+        className="absolute text-7xl transition-all duration-600"
         style={{
           left: '80px',
-          bottom: isJumping ? '200px' : '120px',
-          width: '60px',
-          height: '80px',
+          bottom: isJumping ? '280px' : '120px',
         }}
       >
-        <img 
-          src="/trump-pixel.png" 
-          alt="Trump"
-          className="w-full h-full object-contain"
-          style={{ imageRendering: 'pixelated' }}
-        />
+        🧡
       </div>
 
       {/* Obstacles */}
