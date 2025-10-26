@@ -10,7 +10,7 @@ import SkillCard from '@/components/SkillCard';
 import CertificationCard from '@/components/CertificationCard';
 import ThemeToggle from '@/components/ThemeToggle';
 import BugHunt from '@/components/BugHunt';
-import DronaldDuckRunner from '@/components/DronaldDuckRunner';
+import TrumpRunner from '@/components/TrumpRunner';
 import { validateProfileData } from '@/utils/validation';
 
 export default function ProfilePage() {
@@ -161,7 +161,7 @@ export default function ProfilePage() {
           <h2 className="text-2xl font-bold mb-2 gradient-text-purple">Play Mini Game</h2>
           <p className="text-sm text-gray-600 dark:text-gray-400">President Trump</p>
         </div>
-        <DronaldDuckRunner />
+        <TrumpRunner />
       </section>
 
       <section id="experience" className="max-w-6xl mx-auto px-6 py-12">
