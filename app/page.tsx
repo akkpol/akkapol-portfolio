@@ -9,12 +9,27 @@ import ExperienceCard from '@/components/ExperienceCard';
 import SkillCard from '@/components/SkillCard';
 import CertificationCard from '@/components/CertificationCard';
 import ThemeToggle from '@/components/ThemeToggle';
+import { validateProfileData } from '@/utils/validation';
 
 export default function ProfilePage() {
-  const b = linkedInData.basics;
   const [dark, setDark] = useState(false);
   const [bannerUrl, setBannerUrl] = useState('/Evan Watzon.png');
+  const [isValid, setIsValid] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+
+  // Validate profile data on mount
+  useEffect(() => {
+    try {
+      const valid = validateProfileData(linkedInData);
+      setIsValid(valid);
+      if (!valid) {
+        console.error('Profile data validation failed');
+      }
+    } catch (error) {
+      console.error('Error validating profile data:', error);
+      setIsValid(false);
+    }
+  }, []);
 
   useEffect(() => {
     const test = new Image();
@@ -23,28 +38,59 @@ export default function ProfilePage() {
     test.onerror = () => setBannerUrl('/banner.png');
   }, []);
 
+  // Early return if data is invalid
+  if (!isValid) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center p-8">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Invalid Profile Data
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Please check the console for validation errors
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const b = linkedInData.basics;
+
   let ticking = false;
   function onMouseMove(e: React.MouseEvent) {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(() => {
-      const el = cardRef.current;
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rx = (y / rect.height) * -6;
-        const ry = (x / rect.width) * 6;
-        el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
-      }
-      ticking = false;
-    });
+    try {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        try {
+          const el = cardRef.current;
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rx = (y / rect.height) * -6;
+            const ry = (x / rect.width) * 6;
+            el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+          }
+        } catch (error) {
+          console.error('Error in mouse move animation:', error);
+        } finally {
+          ticking = false;
+        }
+      });
+    } catch (error) {
+      console.error('Error in onMouseMove:', error);
+    }
   }
 
   function onMouseLeave() {
-    const el = cardRef.current;
-    if (!el) return;
-    el.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    try {
+      const el = cardRef.current;
+      if (!el) return;
+      el.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    } catch (error) {
+      console.error('Error in onMouseLeave:', error);
+    }
   }
 
   return (

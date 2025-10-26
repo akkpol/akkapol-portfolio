@@ -7,7 +7,23 @@ interface SkillCardProps {
   index: number;
 }
 
+function validateSkill(skill: Skill): boolean {
+  if (!skill.name || skill.name.trim() === '') {
+    console.warn('Skill missing name');
+    return false;
+  }
+  if (typeof skill.level !== 'number' || isNaN(skill.level)) {
+    console.warn('Skill level is not a valid number');
+    return false;
+  }
+  return true;
+}
+
 export default function SkillCard({ skill, index }: SkillCardProps) {
+  if (!validateSkill(skill)) {
+    return null;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}

@@ -7,6 +7,18 @@ interface ExperienceCardProps {
   index: number;
 }
 
+function validateExperience(exp: Experience): boolean {
+  if (!exp.title || exp.title.trim() === '') {
+    console.warn('Experience missing title at index', exp);
+    return false;
+  }
+  if (!exp.company || exp.company.trim() === '') {
+    console.warn('Experience missing company at index', exp);
+    return false;
+  }
+  return true;
+}
+
 function formatDate(isoMonth: string): string {
   if (!isoMonth) return '';
   if (typeof isoMonth === 'string' && isoMonth.toLowerCase() === 'present') return 'Present';
@@ -18,6 +30,10 @@ function formatDate(isoMonth: string): string {
 }
 
 export default function ExperienceCard({ experience, index }: ExperienceCardProps) {
+  if (!validateExperience(experience)) {
+    return null;
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}

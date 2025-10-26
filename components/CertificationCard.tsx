@@ -7,7 +7,19 @@ interface CertificationCardProps {
   index: number;
 }
 
+function validateCertification(cert: Certification): boolean {
+  if (!cert.name || cert.name.trim() === '') {
+    console.warn('Certification missing name');
+    return false;
+  }
+  return true;
+}
+
 export default function CertificationCard({ certification, index }: CertificationCardProps) {
+  if (!validateCertification(certification)) {
+    return null;
+  }
+
   return (
     <motion.div
       initial={{ scale: 0.95, opacity: 0 }}
