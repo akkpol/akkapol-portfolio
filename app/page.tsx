@@ -10,6 +10,7 @@ import SkillCard from '@/components/SkillCard';
 import CertificationCard from '@/components/CertificationCard';
 import ThemeToggle from '@/components/ThemeToggle';
 import BugHunt from '@/components/BugHunt';
+import PixelTrump from '@/components/PixelTrump';
 import { validateProfileData } from '@/utils/validation';
 
 export default function ProfilePage() {
@@ -178,8 +179,9 @@ export default function ProfilePage() {
       </section>
 
       <footer className="border-t border-gray-200 dark:border-gray-800 mt-10">
-        <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-gray-600 dark:text-gray-400">
+        <div className="max-w-6xl mx-auto px-6 py-10 text-sm text-gray-600 dark:text-gray-400 flex justify-between items-center">
           <p>© {new Date().getFullYear()} {b.name}. Built with Next.js · Tailwind · Framer Motion.</p>
+          <PixelTrump />
         </div>
       </footer>
     </main>
