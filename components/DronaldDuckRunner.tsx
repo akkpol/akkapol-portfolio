@@ -38,8 +38,8 @@ export default function DronaldDuckRunner() {
       // Check collision
       const duckX = 80;
       const duckY = isJumping ? 200 : 380;
-      const duckWidth = 96;  // 16 * 6
-      const duckHeight = 96;
+      const duckWidth = 64;  // 16 * 4
+      const duckHeight = 64;
 
       obstacles.forEach(ob => {
         const obX = ob.x;
@@ -120,7 +120,7 @@ export default function DronaldDuckRunner() {
         <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-sm rounded-2xl">
           <div className="text-center p-6 bg-white/90 dark:bg-gray-900/90 rounded-2xl max-w-md">
             <div className="mb-4 flex justify-center">
-              <PixelTrump scale={8} />
+              <PixelTrump scale={5} />
             </div>
             <h3 className="text-2xl font-bold mb-2 gradient-text-blue">President Trump Runner</h3>
             <p className="text-sm mb-4">กด SPACE หรือคลิกเพื่อกระโดด</p>
@@ -153,7 +153,7 @@ export default function DronaldDuckRunner() {
           bottom: isJumping ? '200px' : '120px',
         }}
       >
-        <PixelTrump scale={6} />
+        <PixelTrump scale={4} />
       </div>
 
       {/* Obstacles */}

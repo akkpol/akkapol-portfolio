@@ -159,7 +159,7 @@ export default function ProfilePage() {
       <section className="max-w-6xl mx-auto px-6 py-12">
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-2 gradient-text-purple">Play Mini Game</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">เกมแบบ Dinosaur game แต่ใช้ President Trump 🧡</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">President Trump</p>
         </div>
         <DronaldDuckRunner />
       </section>
