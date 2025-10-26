@@ -9,10 +9,12 @@ import ExperienceCard from '@/components/ExperienceCard';
 import SkillCard from '@/components/SkillCard';
 import CertificationCard from '@/components/CertificationCard';
 import ThemeToggle from '@/components/ThemeToggle';
+import BugHunt from '@/components/BugHunt';
 import { validateProfileData } from '@/utils/validation';
 
 export default function ProfilePage() {
   const [isValid, setIsValid] = useState(true); // Assume valid until checked
+  const [showGame, setShowGame] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
   // Validate profile data on mount
@@ -82,6 +84,8 @@ export default function ProfilePage() {
 
   return (
     <main className="min-h-screen">
+      {showGame && <BugHunt onClose={() => setShowGame(false)} />}
+      
       <header className="sticky top-0 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800 z-10">
         <nav className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <a href="#" className="font-semibold tracking-tight gradient-text">{b.name}</a>
@@ -89,6 +93,12 @@ export default function ProfilePage() {
             <a className="hover:underline" href="#experience">Experience</a>
             <a className="hover:underline" href="#skills">Skills</a>
             <a className="hover:underline" href="#certs">Certifications</a>
+            <button 
+              onClick={() => setShowGame(true)}
+              className="hover:underline gradient-text-blue font-semibold"
+            >
+              🎮 Play Game
+            </button>
             <ThemeToggle />
           </div>
         </nav>
