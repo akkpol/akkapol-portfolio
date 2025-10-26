@@ -41,7 +41,7 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="mb-6 border rounded-2xl p-5 bg-white/70 dark:bg-white/5"
+      className="mb-6 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 bg-white dark:bg-gray-900 hover:shadow-lg transition-shadow"
     >
       <h3 className="font-semibold flex items-center gap-2">
         <Briefcase size={18} />
