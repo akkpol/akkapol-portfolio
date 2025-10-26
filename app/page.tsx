@@ -93,8 +93,17 @@ export default function ProfilePage() {
     }
   }
 
+  // Update body class when dark mode changes
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [dark]);
+
   return (
-    <main className={(dark ? 'dark ' : '') + 'min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-50 transition-colors duration-300'}>
+    <main className="min-h-screen">
       <header className="sticky top-0 backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800 z-10">
         <nav className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
           <a href="#" className="font-semibold tracking-tight gradient-text">{b.name}</a>
@@ -115,7 +124,6 @@ export default function ProfilePage() {
             <div onMouseMove={onMouseMove} onMouseLeave={onMouseLeave} className="[perspective:1000px]">
               <div ref={cardRef} className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 shadow-xl p-3 transition-transform will-change-transform">
                 <ProfileImage src="/profile.jpg" alt={b.name} />
-                <div className="mt-3 text-center text-sm gradient-text-blue font-semibold">Ready to ship 🚀</div>
               </div>
             </div>
 
