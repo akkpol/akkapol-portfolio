@@ -94,12 +94,12 @@ export default function ProfilePage() {
             <a className="hover:underline" href="#experience">Experience</a>
             <a className="hover:underline" href="#skills">Skills</a>
             <a className="hover:underline" href="#certs">Certifications</a>
-            <button 
+            {/* <button 
               onClick={() => setShowGame(true)}
               className="hover:underline gradient-text-blue font-semibold"
             >
               🎮 Play Game
-            </button>
+            </button> */}
             <ThemeToggle />
           </div>
         </nav>
@@ -156,13 +156,13 @@ export default function ProfilePage() {
       </section>
 
       {/* Game Section */}
-      <section className="max-w-6xl mx-auto px-6 py-12">
+      {/* <section className="max-w-6xl mx-auto px-6 py-12">
         <div className="mb-6">
           <h2 className="text-2xl font-bold mb-2 gradient-text-purple">Play Mini Game</h2>
           <p className="text-sm text-gray-600 dark:text-gray-400">President Trump</p>
         </div>
         <TrumpRunner />
-      </section>
+      </section> */}
 
       <section id="experience" className="max-w-6xl mx-auto px-6 py-12">
         <h2 className="text-2xl font-bold mb-6 gradient-text">Experience</h2>
