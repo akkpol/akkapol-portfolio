@@ -57,7 +57,18 @@ export default function CertificationCard({ certification, index }: Certificatio
             ) : null}
           </div>
           <div className="flex-1 p-4 sm:p-5 flex items-start gap-3">
-            <Award size={20} className="text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+            {certification.logo ? (
+              <div className="flex-shrink-0">
+                <img 
+                  src={certification.logo} 
+                  alt={certification.issuer}
+                  className="w-12 h-12 object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <Award size={20} className="text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+            )}
             <div className="flex-1">
               <p className="font-semibold text-base mb-1">{certification.name}</p>
               <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -71,7 +82,18 @@ export default function CertificationCard({ certification, index }: Certificatio
         </div>
       ) : (
         <div className="flex items-center gap-3">
-          <Award size={20} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+          {certification.logo ? (
+            <div className="flex-shrink-0">
+              <img 
+                src={certification.logo} 
+                alt={certification.issuer}
+                className="w-10 h-10 object-contain"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <Award size={20} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+          )}
           <div>
             <p className="font-medium">{certification.name}</p>
             <p className="text-sm text-gray-700 dark:text-gray-300">

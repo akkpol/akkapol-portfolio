@@ -39,19 +39,22 @@ export const linkedInData: LinkedInData = {
     { 
       name: 'Fullstack JavaScript Web Development', 
       issuer: 'Software Park CodeCamp', 
-      year: '2021'
+      year: '2021',
+      logo: '/logo-software-park.jpg'
     },
     { 
       name: 'Development of SCADA Systems for Production Processes', 
-      issuer: 'Rajamangala University of Technology Phra NakhonRajamangala', 
+      issuer: 'Rajamangala University of Technology Phra Nakhon', 
       year: '2024',
-      pdf: '/SCADA Training _ 7192 Mr. Akkapol Kumpapug.pdf'
+      pdf: '/SCADA Training _ 7192 Mr. Akkapol Kumpapug.pdf',
+      logo: '/logo-rmutp.jpg'
     },
     { 
       name: 'Data Analysis with Power BI', 
       issuer: 'Askme Solutions & Consultants Co., Ltd.', 
       year: '2024',
-      pdf: '/04 Apr _ Power BI Analytic Tool.pdf'
+      pdf: '/04 Apr _ Power BI Analytic Tool.pdf',
+      logo: '/logo-askme.jpg'
     }
   ],
   education: [

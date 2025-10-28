@@ -30,6 +30,7 @@ export interface Certification {
   year: string;
   image?: string;
   pdf?: string;
+  logo?: string;
 }
 
 export interface Education {
