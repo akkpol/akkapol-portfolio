@@ -39,18 +39,17 @@ export const linkedInData: LinkedInData = {
     { 
       name: 'Fullstack JavaScript Web Development', 
       issuer: 'Software Park CodeCamp', 
-      year: '2021',
-      pdf: '/cert-fullstack-js.pdf'
+      year: '2021'
     },
     { 
       name: 'Development of SCADA Systems for Production Processes', 
-      issuer: 'Training Program', 
+      issuer: 'Rajamangala University of Technology Phra NakhonRajamangala', 
       year: '2024',
       pdf: '/SCADA Training _ 7192 Mr. Akkapol Kumpapug.pdf'
     },
     { 
       name: 'Data Analysis with Power BI', 
-      issuer: 'Microsoft Learn', 
+      issuer: 'Askme Solutions & Consultants Co., Ltd.', 
       year: '2024',
       pdf: '/04 Apr _ Power BI Analytic Tool.pdf'
     }
