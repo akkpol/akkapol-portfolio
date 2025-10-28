@@ -36,9 +36,24 @@ export const linkedInData: LinkedInData = {
     { name: 'SCADA', level: 60 }
   ],
   certifications: [
-    { name: 'Fullstack JavaScript Web Development', issuer: 'LinkedIn Learning', year: '2024' },
-    { name: 'Development of SCADA Systems for Production Processes', issuer: 'Training Program', year: '2024' },
-    { name: 'Data Analysis with Power BI', issuer: 'Microsoft Learn', year: '2024' }
+    { 
+      name: 'Fullstack JavaScript Web Development', 
+      issuer: 'Software Park CodeCamp', 
+      year: '2021',
+      pdf: '/cert-fullstack-js.pdf'
+    },
+    { 
+      name: 'Development of SCADA Systems for Production Processes', 
+      issuer: 'Training Program', 
+      year: '2024',
+      pdf: '/SCADA Training _ 7192 Mr. Akkapol Kumpapug.pdf'
+    },
+    { 
+      name: 'Data Analysis with Power BI', 
+      issuer: 'Microsoft Learn', 
+      year: '2024',
+      pdf: '/04 Apr _ Power BI Analytic Tool.pdf'
+    }
   ],
   education: [
     {

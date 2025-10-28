@@ -28,6 +28,8 @@ export interface Certification {
   name: string;
   issuer: string;
   year: string;
+  image?: string;
+  pdf?: string;
 }
 
 export interface Education {
