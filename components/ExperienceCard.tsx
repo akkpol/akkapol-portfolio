@@ -41,17 +41,17 @@ export default function ExperienceCard({ experience, index }: ExperienceCardProp
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className="mb-6 border border-gray-200 dark:border-gray-800 rounded-2xl p-5 bg-white dark:bg-gray-900 hover:shadow-lg transition-shadow"
+      className="mb-6 border border-gray-200 dark:border-gray-800 rounded-2xl p-4 sm:p-5 bg-white dark:bg-gray-900 hover:shadow-lg transition-shadow"
     >
-      <h3 className="font-semibold flex items-center gap-2">
+      <h3 className="font-semibold text-sm sm:text-base flex items-center gap-2">
         <Briefcase size={18} />
         {experience.title}
       </h3>
-      <p className="text-gray-700 dark:text-gray-300">{experience.company}</p>
-      <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
-        <CalendarDays size={14} /> {formatDate(experience.startDate)} — {formatDate(experience.endDate)} · {experience.location}
+      <p className="text-sm text-gray-700 dark:text-gray-300">{experience.company}</p>
+      <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1 flex-wrap">
+        <CalendarDays size={14} /> <span>{formatDate(experience.startDate)} — {formatDate(experience.endDate)}</span> <span className="hidden sm:inline">·</span> <span className="w-full sm:w-auto">{experience.location}</span>
       </p>
-      <ul className="mt-3 list-disc pl-5 text-sm text-gray-700 dark:text-gray-200 space-y-1">
+      <ul className="mt-3 list-disc pl-5 text-xs sm:text-sm text-gray-700 dark:text-gray-200 space-y-1">
         {experience.highlights.map((h, idx) => (
           <li key={idx}>{h}</li>
         ))}
