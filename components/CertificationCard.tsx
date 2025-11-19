@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Award, FileText, ExternalLink } from 'lucide-react';
+import { Award, ExternalLink } from 'lucide-react';
 import { Certification } from '@/types';
 
 interface CertificationCardProps {
@@ -33,18 +33,26 @@ export default function CertificationCard({ certification, index }: Certificatio
     >
       {hasMedia ? (
         <div className="flex flex-col sm:flex-row">
-          <div className={`sm:w-40 sm:h-40 w-full ${certification.pdf ? 'h-40' : 'h-48'} relative bg-gray-100 dark:bg-gray-800 flex-shrink-0 flex items-center justify-center`}>
+          <div className={`sm:w-40 sm:h-40 w-full ${certification.pdf ? 'h-48' : 'h-40'} relative bg-gray-100 dark:bg-gray-800 flex-shrink-0 flex items-center justify-center overflow-hidden`}>
             {certification.pdf ? (
-              <div className="text-center p-4">
-                <FileText size={48} className="text-gray-400 dark:text-gray-600 mx-auto mb-2" />
-                <p className="text-xs text-gray-500 dark:text-gray-400">PDF Certificate</p>
+              <div className="w-full h-full relative group">
+                <iframe
+                  src={`${certification.pdf}#view=FitH`}
+                  className="w-full h-full border-0"
+                  title={certification.name}
+                  loading="lazy"
+                />
                 <a 
                   href={certification.pdf} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 mt-2 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                  className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/10 transition-colors group-hover:opacity-100 opacity-0"
+                  title="Click to open PDF in new tab"
                 >
-                  View PDF <ExternalLink size={12} />
+                  <div className="bg-white/90 dark:bg-gray-900/90 px-3 py-1.5 rounded-lg flex items-center gap-1.5 text-xs text-gray-700 dark:text-gray-300 shadow-lg">
+                    <ExternalLink size={14} />
+                    <span>Open PDF</span>
+                  </div>
                 </a>
               </div>
             ) : certification.image ? (

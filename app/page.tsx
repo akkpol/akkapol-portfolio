@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, MapPin, Linkedin, Menu, X } from 'lucide-react';
-import { linkedInData } from '@/data/profile';
+import { linkedInData as defaultData } from '@/data/profile';
 import ProfileImage from '@/components/ProfileImage';
 import ExperienceCard from '@/components/ExperienceCard';
 import SkillCard from '@/components/SkillCard';
@@ -12,42 +12,18 @@ import ThemeToggle from '@/components/ThemeToggle';
 import BugHunt from '@/components/BugHunt';
 import TrumpRunner from '@/components/TrumpRunner';
 import { validateProfileData } from '@/utils/validation';
+import AuthButton from '@/components/AuthButton';
+import { LinkedInData } from '@/types';
 
 export default function ProfilePage() {
   const [isValid, setIsValid] = useState(true); // Assume valid until checked
   const [showGame, setShowGame] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [linkedInData, setLinkedInData] = useState<LinkedInData>(defaultData);
+  const [loading, setLoading] = useState(true);
   const cardRef = useRef<HTMLDivElement>(null);
 
-  // Validate profile data on mount
-  useEffect(() => {
-    try {
-      const valid = validateProfileData(linkedInData);
-      setIsValid(valid);
-    } catch (error) {
-      console.error('Error validating profile data:', error);
-      setIsValid(false);
-    }
-  }, []);
-
-  // Early return if data is invalid
-  if (!isValid) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <div className="text-center p-8">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Invalid Profile Data
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Please check the console for validation errors
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  const b = linkedInData.basics;
-
+  // Handlers must be declared before any conditional returns
   const onMouseMove = useCallback((e: React.MouseEvent) => {
     let ticking = false;
     if (ticking) return;
@@ -84,6 +60,63 @@ export default function ProfilePage() {
     }
   }, []);
 
+  // Fetch profile data from API
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/api/profile');
+        if (res.ok) {
+          const data = await res.json();
+          setLinkedInData(data);
+          const valid = validateProfileData(data);
+          setIsValid(valid);
+        } else {
+          // Fallback to default data
+          const valid = validateProfileData(defaultData);
+          setIsValid(valid);
+        }
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
+        // Fallback to default data
+        const valid = validateProfileData(defaultData);
+        setIsValid(valid);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">กำลังโหลดข้อมูล...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Early return if data is invalid
+  if (!isValid) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center p-8">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Invalid Profile Data
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Please check the console for validation errors
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  const b = linkedInData.basics;
+
   return (
     <main className="min-h-screen">
       {showGame && <BugHunt onClose={() => setShowGame(false)} />}
@@ -98,10 +131,12 @@ export default function ProfilePage() {
             <a className="hover:underline" href="#skills">Skills</a>
             <a className="hover:underline" href="#certs">Certifications</a>
             <ThemeToggle />
+            <AuthButton />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
+            <AuthButton />
             <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

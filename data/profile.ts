@@ -1,5 +1,6 @@
 import { LinkedInData } from '@/types';
 
+// Default data - will be overridden by API if available
 export const linkedInData: LinkedInData = {
   basics: {
     name: 'Akkapol Kumpapug',
@@ -11,7 +12,7 @@ export const linkedInData: LinkedInData = {
     socials: {
       linkedin: 'https://www.linkedin.com/in/akkapol-kumpapug',
     },
-    keywords: ['SharePoint', 'JavaScript', 'React', 'Next.js', 'C#', '.NET', 'Power BI', 'Power Automate', 'SCADA']
+    keywords: ['SharePoint', 'JavaScript / React / Next.js', 'C# / .NET', 'Python', 'Power BI', 'SCADA']
   },
   experience: [
     {
@@ -40,6 +41,7 @@ export const linkedInData: LinkedInData = {
       name: 'Fullstack JavaScript Web Development', 
       issuer: 'Software Park CodeCamp', 
       year: '2021',
+      image: '/cer_fullstack_web.jpg',
       logo: '/logo-software-park.jpg'
     },
     { 

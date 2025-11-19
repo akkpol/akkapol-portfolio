@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import Providers from "@/components/Providers";
 
 export const metadata = {
   title: "Akkapol Portfolio",
@@ -14,7 +15,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-50 transition-colors duration-300" suppressHydrationWarning>
         <ErrorBoundary>
-          {children}
+          <Providers>
+            {children}
+          </Providers>
         </ErrorBoundary>
       </body>
     </html>
