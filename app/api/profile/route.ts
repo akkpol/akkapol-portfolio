@@ -4,15 +4,34 @@ import { promises as fs } from "fs"
 import path from "path"
 import { LinkedInData } from "@/types"
 
-const PROFILE_FILE = path.join(process.cwd(), "data", "profile.json")
+export const runtime = 'nodejs'
+
+const DATA_DIR = path.join(process.cwd(), "data")
+const PROFILE_FILE = path.join(DATA_DIR, "profile.json")
+
+// Ensure data directory exists
+async function ensureDataDir() {
+  try {
+    await fs.access(DATA_DIR)
+  } catch {
+    await fs.mkdir(DATA_DIR, { recursive: true })
+  }
+}
 
 // GET profile data
 export async function GET() {
   try {
+    await ensureDataDir()
     const fileContents = await fs.readFile(PROFILE_FILE, "utf8")
     const data = JSON.parse(fileContents)
     return NextResponse.json(data)
   } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      return NextResponse.json(
+        { error: "Profile data not found" },
+        { status: 404 }
+      )
+    }
     console.error("Error reading profile:", error)
     return NextResponse.json(
       { error: "Failed to read profile data" },
@@ -43,6 +62,9 @@ export async function PUT(request: NextRequest) {
       )
     }
 
+    // Ensure data directory exists before writing
+    await ensureDataDir()
+    
     // Write to file
     await fs.writeFile(PROFILE_FILE, JSON.stringify(body, null, 2), "utf8")
     

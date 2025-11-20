@@ -8,7 +8,14 @@
     "socials": {
       "linkedin": "https://www.linkedin.com/in/akkapol-kumpapug"
     },
-    "keywords": ["SharePoint", "JavaScript / React / Next.js", "C# / .NET", "Python", "Power BI", "SCADA"]
+    "keywords": [
+      "SharePoint",
+      "JavaScript / React / Next.js",
+      "C# / .NET",
+      "Python",
+      "Power BI",
+      "SCADA"
+    ]
   },
   "experience": [
     {

@@ -1,6 +1,5 @@
 import type { NextAuthConfig } from "next-auth"
 import Google from "next-auth/providers/google"
-import { appendLog } from "@/utils/logger"
 
 const adminEmails = (process.env.ADMIN_EMAILS || "")
   .split(",")
@@ -57,11 +56,18 @@ export const authConfig = {
   },
   events: {
     async signIn({ user }) {
-      await appendLog({
-        timestamp: new Date().toISOString(),
-        action: "login",
-        email: user.email,
-      })
+      // Use dynamic import to avoid loading logger in Edge Runtime
+      try {
+        const { appendLog } = await import("@/utils/logger")
+        await appendLog({
+          timestamp: new Date().toISOString(),
+          action: "login",
+          email: user.email,
+        })
+      } catch (error) {
+        // Silently fail if logger is not available (e.g., in Edge Runtime)
+        console.error("Failed to log sign-in event:", error)
+      }
     },
   },
 } satisfies NextAuthConfig
