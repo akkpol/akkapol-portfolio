@@ -11,7 +11,7 @@
 5. เลือก **Web application**
 6. ตั้งค่า:
    - **Name**: ชื่อโปรเจกต์ของคุณ
-   - **Authorized JavaScript origins**: 
+   - **Authorized JavaScript origins**:
      - `http://localhost:3000` (สำหรับ development)
      - `https://yourdomain.com` (สำหรับ production)
    - **Authorized redirect URIs**:
@@ -34,6 +34,7 @@ GOOGLE_CLIENT_SECRET=your-google-client-secret
 ```
 
 **สร้าง NEXTAUTH_SECRET:**
+
 ```bash
 openssl rand -base64 32
 ```
@@ -41,6 +42,7 @@ openssl rand -base64 32
 ### 3. สำหรับ Production
 
 เมื่อ deploy ไปยัง production:
+
 - เปลี่ยน `NEXTAUTH_URL` เป็น URL ของเว็บไซต์จริง
 - เพิ่ม redirect URI ใน Google Cloud Console
 - ตั้งค่า environment variables ใน hosting platform (Vercel, Netlify, etc.)
@@ -69,4 +71,3 @@ openssl rand -base64 32
 - ระบบใช้ NextAuth.js v5 (beta) ซึ่งเป็นเวอร์ชันล่าสุด
 - Session ถูกเก็บใน cookies (default)
 - สามารถปรับแต่ง callbacks และ middleware ตามต้องการ
-

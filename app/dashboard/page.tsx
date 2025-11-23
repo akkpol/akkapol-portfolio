@@ -166,7 +166,7 @@ export default function Dashboard() {
               transition={{ duration: 0.2 }}
             >
               {activeTab === 'basics' && (
-                <ProfileForm data={data} onChange={(basics) => setData({ ...data, basics })} />
+                <ProfileForm data={data.basics} onChange={(basics) => setData({ ...data, basics })} />
               )}
               {activeTab === 'experience' && (
                 <ExperienceForm data={data.experience} onChange={(experience) => setData({ ...data, experience })} />
