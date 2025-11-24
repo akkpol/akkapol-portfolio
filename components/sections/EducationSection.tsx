@@ -1,7 +1,11 @@
-import { resumeContent } from "@/data/resumeContent";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { Education } from "@/types";
 
-export function EducationSection() {
+interface EducationSectionProps {
+  education: Education[];
+}
+
+export function EducationSection({ education }: EducationSectionProps) {
   return (
     <section id="education" className="px-6 py-16">
       <div className="mx-auto max-w-6xl">
@@ -16,13 +20,11 @@ export function EducationSection() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {resumeContent.education.map((edu) => (
-            <GlassCard key={edu.program} className="p-5">
-              <p className="text-sm uppercase tracking-[0.4em] text-text-muted">{edu.year}</p>
-              <h3 className="mt-2 font-display text-xl font-semibold text-white">{edu.program}</h3>
+          {education.map((edu) => (
+            <GlassCard key={edu.degree} className="p-5">
+              <p className="text-sm uppercase tracking-[0.4em] text-text-muted">{edu.startDate} – {edu.endDate}</p>
+              <h3 className="mt-2 font-display text-xl font-semibold text-white">{edu.degree}</h3>
               <p className="text-accent.purple">{edu.institution}</p>
-              <p className="text-xs uppercase tracking-wide text-text-muted">{edu.location}</p>
-              <p className="mt-4 text-sm text-text-muted">{edu.summary}</p>
             </GlassCard>
           ))}
         </div>
@@ -30,4 +32,3 @@ export function EducationSection() {
     </section>
   );
 }
-
