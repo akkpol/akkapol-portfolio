@@ -1,7 +1,11 @@
-import { resumeContent } from "@/data/resumeContent";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { Certification } from "@/types";
 
-export function CertificationsSection() {
+interface CertificationsSectionProps {
+  certifications: Certification[];
+}
+
+export function CertificationsSection({ certifications }: CertificationsSectionProps) {
   return (
     <section id="certifications" className="px-6 py-16">
       <div className="mx-auto max-w-6xl">
@@ -13,12 +17,11 @@ export function CertificationsSection() {
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">
-          {resumeContent.certifications.map((cert) => (
+          {certifications.map((cert) => (
             <GlassCard key={cert.name} className="p-6">
               <p className="text-sm uppercase tracking-[0.4em] text-text-muted">{cert.year}</p>
               <h3 className="mt-2 font-display text-2xl font-semibold text-white">{cert.name}</h3>
               <p className="text-accent.blue">{cert.issuer}</p>
-              {cert.notes && <p className="mt-3 text-sm text-text-muted">{cert.notes}</p>}
             </GlassCard>
           ))}
         </div>
@@ -26,4 +29,3 @@ export function CertificationsSection() {
     </section>
   );
 }
-

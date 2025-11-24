@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { resumeContent } from "@/data/resumeContent";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/PrimaryButton";
+import { Basics } from "@/types";
 
 const heroContainer = {
   hidden: { opacity: 0, y: 20 },
@@ -18,9 +18,11 @@ const heroItem = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-export function HeroSection() {
-  const basics = resumeContent.basics;
+interface HeroSectionProps {
+  basics: Basics;
+}
 
+export function HeroSection({ basics }: HeroSectionProps) {
   return (
     <section id="hero" className="relative isolate overflow-hidden px-6 pt-32 pb-16 sm:pb-24">
       <div className="absolute inset-0 -z-10">
@@ -50,7 +52,7 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div variants={heroItem} className="mt-6 flex flex-wrap gap-3">
-            {basics.tags.map((tag) => (
+            {basics.keywords && basics.keywords.map((tag) => (
               <motion.span
                 key={tag}
                 whileHover={{ scale: 1.05 }}
@@ -63,7 +65,7 @@ export function HeroSection() {
 
           <motion.div variants={heroItem} className="mt-10 flex flex-wrap gap-4">
             <PrimaryButton href="#experience">View Experience</PrimaryButton>
-            <SecondaryButton href="mailto:akkapol.kumpapug@gmail.com">Contact</SecondaryButton>
+            <SecondaryButton href={`mailto:${basics.email}`}>Contact</SecondaryButton>
             <SecondaryButton href="/dashboard">Admin Dashboard</SecondaryButton>
           </motion.div>
         </div>
@@ -94,4 +96,3 @@ export function HeroSection() {
     </section>
   );
 }
-
