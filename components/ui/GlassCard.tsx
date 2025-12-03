@@ -16,7 +16,7 @@ export function GlassCard({ children, className }: GlassCardProps) {
       whileHover={{ scale: 1.015 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={cn(
-        "rounded-3xl border border-white/10 bg-white/5 bg-clip-padding backdrop-blur-3xl shadow-glow-mixed/30 transition-all duration-300",
+        "rounded-3xl border border-gray-200 dark:border-white/10 bg-white/80 dark:bg-white/5 bg-clip-padding backdrop-blur-3xl shadow-lg dark:shadow-glow-mixed/30 transition-all duration-300",
         className
       )}
     >

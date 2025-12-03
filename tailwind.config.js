@@ -9,11 +9,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#050816",
-        surface: "#0F172A",
-        "surface-muted": "rgba(15, 23, 42, 0.85)",
-        "text-primary": "#E5E7EB",
-        "text-muted": "#9CA3AF",
+        background: "var(--background)",
+        surface: "var(--surface)",
+        "surface-muted": "var(--surface-muted)",
+        "text-primary": "var(--text-primary)",
+        "text-muted": "var(--text-muted)",
         accent: {
           blue: "#38BDF8",
           purple: "#A855F7",

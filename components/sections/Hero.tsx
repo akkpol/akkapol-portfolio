@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
-import { resumeContent } from "@/data/resumeContent";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/PrimaryButton";
+import { Basics } from "@/types";
+import TiltCard from "@/components/TiltCard";
 
 const heroContainer = {
   hidden: { opacity: 0, y: 20 },
@@ -18,8 +19,7 @@ const heroItem = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-export function HeroSection() {
-  const basics = resumeContent.basics;
+export function HeroSection({ basics }: { basics: Basics }) {
 
   return (
     <section id="hero" className="relative isolate overflow-hidden px-6 pt-32 pb-16 sm:pb-24">
@@ -38,11 +38,11 @@ export function HeroSection() {
           </motion.p>
           <motion.h1
             variants={heroItem}
-            className="mt-4 font-display text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl"
+            className="mt-4 font-display text-4xl font-black leading-tight text-gray-900 dark:text-white sm:text-5xl lg:text-6xl"
           >
             {basics.name}
           </motion.h1>
-          <motion.p variants={heroItem} className="mt-3 text-xl text-accent.blue">
+          <motion.p variants={heroItem} className="mt-3 text-xl text-accent-blue">
             {basics.headline}
           </motion.p>
           <motion.p variants={heroItem} className="mt-4 max-w-2xl text-base leading-relaxed text-text-muted">
@@ -50,11 +50,11 @@ export function HeroSection() {
           </motion.p>
 
           <motion.div variants={heroItem} className="mt-6 flex flex-wrap gap-3">
-            {basics.tags.map((tag) => (
+            {basics.keywords.map((tag) => (
               <motion.span
                 key={tag}
                 whileHover={{ scale: 1.05 }}
-                className="rounded-full border border-white/10 bg-white/5 px-4 py-1 text-sm text-text-primary"
+                className="rounded-full border border-gray-200 dark:border-white/10 bg-white/50 dark:bg-white/5 px-4 py-1 text-sm text-text-primary"
               >
                 {tag}
               </motion.span>
@@ -72,23 +72,28 @@ export function HeroSection() {
           variants={heroItem}
           className="relative flex flex-1 justify-center"
         >
-          <div className="relative h-72 w-72 rounded-[2.5rem] border border-white/10 bg-surface/70 p-1 shadow-glow-mixed backdrop-blur-3xl md:h-80 md:w-80">
-            <div className="h-full w-full rounded-[2rem] bg-[url('/profile.jpg')] bg-cover bg-center" />
-            <motion.div
-              className="absolute -right-6 top-6 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-text-primary shadow-glow-blue backdrop-blur-xl"
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 6, repeat: Infinity }}
-            >
-              SharePoint · Power Platform
-            </motion.div>
-            <motion.div
-              className="absolute -left-8 bottom-6 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-text-primary shadow-glow-purple backdrop-blur-xl"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 7, repeat: Infinity }}
-            >
-              React · Next.js
-            </motion.div>
-          </div>
+          <TiltCard className="relative h-72 w-72 rounded-[2.5rem] md:h-80 md:w-80">
+            <div className="relative h-full w-full rounded-[2.5rem] border border-white/10 bg-surface/70 p-1 shadow-glow-mixed backdrop-blur-3xl">
+              <div 
+                className="h-full w-full rounded-[2rem] bg-cover bg-center"
+                style={{ backgroundImage: `url('${basics.image || '/profile.jpg'}')` }}
+              />
+              <motion.div
+                className="absolute -right-6 top-6 rounded-2xl border border-white/10 bg-surface/90 px-4 py-3 text-sm text-text-primary shadow-glow-blue backdrop-blur-xl"
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 6, repeat: Infinity }}
+              >
+                SharePoint · Power Platform
+              </motion.div>
+              <motion.div
+                className="absolute -left-8 bottom-6 rounded-2xl border border-white/10 bg-surface/90 px-4 py-3 text-sm text-text-primary shadow-glow-purple backdrop-blur-xl"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 7, repeat: Infinity }}
+              >
+                React · Next.js
+              </motion.div>
+            </div>
+          </TiltCard>
         </motion.div>
       </motion.div>
     </section>

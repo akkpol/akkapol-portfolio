@@ -15,7 +15,7 @@
 2. ไปที่ **APIs & Services** > **Credentials**
 3. คลิกที่ OAuth Client ID ที่สร้างไว้
 4. ในส่วน **Authorized redirect URIs** เพิ่ม:
-   - `https://your-vercel-url.vercel.app/api/auth/callback/google`
+   - `https://akkapol-portfolio.vercel.app/api/auth/callback/google`
    - (แทนที่ `your-vercel-url` ด้วย URL จริงจาก Vercel)
    - ตัวอย่าง: `https://akkapol-portfolio.vercel.app/api/auth/callback/google`
 5. คลิก **Save**
@@ -30,7 +30,7 @@
 
 #### NEXTAUTH_URL
 - **Key**: `NEXTAUTH_URL`
-- **Value**: `https://your-vercel-url.vercel.app` (URL จริงจาก Vercel)
+- **Value**: `https://akkapol-portfolio.vercel.app` (หรือ URL จริงที่คุณได้รับจาก Vercel)
   - ตัวอย่าง: `https://akkapol-portfolio.vercel.app`
 - **Environment**: เลือก **Production**, **Preview**, และ **Development** (หรือเลือกทั้งหมด)
 - คลิก **Save**

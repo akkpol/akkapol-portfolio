@@ -1,37 +1,28 @@
 import { NextRequest, NextResponse } from "next/server"
 import { auth } from "@/auth"
-import { promises as fs } from "fs"
-import path from "path"
+import { doc, getDoc, setDoc } from "firebase/firestore"
+import { db } from "@/lib/firebase"
 import { LinkedInData } from "@/types"
 
 export const runtime = 'nodejs'
 
-const DATA_DIR = path.join(process.cwd(), "data")
-const PROFILE_FILE = path.join(DATA_DIR, "profile.json")
-
-// Ensure data directory exists
-async function ensureDataDir() {
-  try {
-    await fs.access(DATA_DIR)
-  } catch {
-    await fs.mkdir(DATA_DIR, { recursive: true })
-  }
-}
+const PROFILE_DOC_ID = "main-profile"
 
 // GET profile data
 export async function GET() {
   try {
-    await ensureDataDir()
-    const fileContents = await fs.readFile(PROFILE_FILE, "utf8")
-    const data = JSON.parse(fileContents)
-    return NextResponse.json(data)
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+    const docRef = doc(db, "profiles", PROFILE_DOC_ID)
+    const docSnap = await getDoc(docRef)
+    
+    if (!docSnap.exists()) {
       return NextResponse.json(
         { error: "Profile data not found" },
         { status: 404 }
       )
     }
+    
+    return NextResponse.json(docSnap.data())
+  } catch (error) {
     console.error("Error reading profile:", error)
     return NextResponse.json(
       { error: "Failed to read profile data" },
@@ -62,11 +53,9 @@ export async function PUT(request: NextRequest) {
       )
     }
 
-    // Ensure data directory exists before writing
-    await ensureDataDir()
-    
-    // Write to file
-    await fs.writeFile(PROFILE_FILE, JSON.stringify(body, null, 2), "utf8")
+    // Write to Firestore
+    const docRef = doc(db, "profiles", PROFILE_DOC_ID)
+    await setDoc(docRef, body)
     
     return NextResponse.json({ success: true, data: body })
   } catch (error) {
@@ -77,4 +66,3 @@ export async function PUT(request: NextRequest) {
     )
   }
 }
-

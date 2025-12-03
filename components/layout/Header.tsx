@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/utils/cn";
 import AuthButton from "@/components/AuthButton";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { href: "#hero", label: "Home" },
@@ -23,6 +25,9 @@ export function Header() {
   useMotionValueEvent(scrollY, "change", (current) => {
     setScrolled(current > 30);
   });
+
+  const pathname = usePathname();
+  if (pathname?.startsWith("/dashboard")) return null;
 
   return (
     <motion.header
@@ -51,7 +56,8 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-4">
+            <ThemeToggle />
             <AuthButton />
           </div>
           <button
@@ -84,7 +90,8 @@ export function Header() {
                   {link.label}
                 </a>
               ))}
-              <div className="pt-2">
+              <div className="flex items-center gap-4 pt-2">
+                <ThemeToggle />
                 <AuthButton />
               </div>
             </div>
