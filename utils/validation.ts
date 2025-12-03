@@ -1,4 +1,4 @@
-import { LinkedInData, Basics, Experience, Skill, Certification } from '@/types';
+import { LinkedInData, Basics, Experience, SkillGroup, Certification } from '@/types';
 
 export function validateBasics(basics: Basics): boolean {
   if (!basics.name || basics.name.trim() === '') {
@@ -30,14 +30,19 @@ export function validateExperience(experience: Experience[]): boolean {
   });
 }
 
-export function validateSkills(skills: Skill[]): boolean {
-  return skills.every((skill, index) => {
-    if (!skill.name || skill.name.trim() === '') {
-      console.error(`Error: Skill ${index} name is required`);
+export function validateSkills(skills: SkillGroup[]): boolean {
+  return skills.every((skillGroup, index) => {
+    if (!skillGroup.title || skillGroup.title.trim() === '') {
+      console.error(`Error: SkillGroup ${index} title is required`);
       return false;
     }
-    if (typeof skill.level !== 'number' || skill.level < 0 || skill.level > 100) {
-      console.error(`Error: Skill ${index} level must be between 0 and 100`);
+    if (!Array.isArray(skillGroup.items) || skillGroup.items.length === 0) {
+      console.error(`Error: SkillGroup ${index} must have at least one item`);
+      return false;
+    }
+    // Validate each item in the group
+    if (!skillGroup.items.every(item => item && item.trim() !== '')) {
+      console.error(`Error: SkillGroup ${index} contains empty items`);
       return false;
     }
     return true;
