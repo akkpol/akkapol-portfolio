@@ -4,6 +4,8 @@ import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { LinkedInData } from "@/types"
 
+// Force dynamic rendering (needed for auth)
+export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
 const PROFILE_DOC_ID = "main-profile"
