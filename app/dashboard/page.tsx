@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { Save, Loader2, ArrowLeft, User, Briefcase, Code2, Award, GraduationCap } from "lucide-react"
 import ProfileForm from "@/components/admin/ProfileForm"
 import ExperienceForm from "@/components/admin/ExperienceForm"
-import SkillsForm from "@/components/admin/SkillsForm"
+
 import CertificationsForm from "@/components/admin/CertificationsForm"
 import EducationForm from "@/components/admin/EducationForm"
 import { LinkedInData } from "@/types"
@@ -193,7 +193,11 @@ export default function Dashboard() {
                   <ExperienceForm data={data.experience} onChange={(experience) => setData({ ...data, experience })} />
                 )}
                 {activeTab === 'skills' && (
-                  <SkillsForm data={data.skills} onChange={(skills) => setData({ ...data, skills })} />
+                  <div className="p-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <p className="text-blue-800 dark:text-blue-200 text-sm">
+                      Skills are managed as SkillGroups (title + items array). Edit directly in Firebase Console or profile.json for now.
+                    </p>
+                  </div>
                 )}
                 {activeTab === 'certifications' && (
                   <CertificationsForm data={data.certifications} onChange={(certifications) => setData({ ...data, certifications })} />
