@@ -13,3 +13,5 @@ pnpm-debug.log*
 .github\instructions\codacy.instructions.md
 
 .vercel
+
+scripts/firebase-service-account.json
