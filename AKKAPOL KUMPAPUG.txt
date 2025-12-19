@@ -1,0 +1,114 @@
+AKKAPOL KUMPAPUG
+
+AI-Assisted Problem Solver | Research-Driven Thinking | Clear, Practical Execution
+
+Nonthaburi, Thailand
+📞 096-119-5161
+📧 akkapol.kumpapug@gmail.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/akkapol-kumpapug
+
+🌐 Portfolio: https://akkapol-portfolio.vercel.app
+
+Executive Summary
+
+AI-assisted problem solver with a strong execution background in enterprise systems and internal tools. I focus on using AI to improve the quality of thinking and decision-making, rather than simply accelerating execution. My approach emphasizes asking the right questions, reducing cognitive blind spots, and testing assumptions before action. I work with AI as a research and thinking partner to turn complex or ambiguous situations into clear, practical directions. With hands-on experience in building and operating real systems, I believe long-term value comes from combining modern technology with sound human judgment.
+
+Professional Experience
+AI-Assisted Problem Solver (Independent)
+
+Present
+
+Research-driven problem analysis using AI as a thinking and reasoning partner
+
+Clarifying ambiguous problems, testing assumptions, and supporting sound decisions
+
+Translating insights into clear, practical directions grounded in real execution
+
+Self-directed exploration of AI-assisted workflows focused on decision quality and long-term value
+
+Information Technology Programmer / SharePoint & Power Platform Developer
+
+C.C.S. Advance Tech Co., Ltd. | Nonthaburi | Nov 2022 – Nov 2025
+
+Developed and maintained enterprise systems on SharePoint 2019 On-Premise
+
+Automated workflows using Power Automate to reduce manual processes
+
+Built custom forms and interfaces using JavaScript, jQuery, HTML, and CSS
+
+Integrated SharePoint lists, legacy data, and business requirements into scalable digital tools
+
+Collaborated with cross-functional teams to define requirements and prioritize development tasks
+
+Front-End Developer
+
+Absolute Solution Co., Ltd. | Bangkok | Nov 2021 – Jul 2022
+
+Developed user interfaces using React, Next.js, Ant Design, and Material UI
+
+Integrated REST APIs to support real-time data operations
+
+Participated in Agile workflows and collaborated with designers and backend developers
+
+Operations Manager
+
+Frozen Restaurant | Kalasin | Oct 2018 – Dec 2020
+
+Managed daily operations, staff coordination, and resource planning
+
+Improved operational workflows and overall team performance
+
+Gained hands-on experience in decision-making under real operational constraints
+
+Junior .NET Developer
+
+Auction Trade Co., Ltd. | Bangkok | Oct 2015 – Feb 2018
+
+Developed internal systems using C#, .NET Framework, and SQL Server
+
+Fixed bugs, optimized legacy code, and improved system stability
+
+Supported database operations and ongoing system maintenance
+
+Graphic Designer
+
+Manta Performing Arts | Dec 2013 – Dec 2014
+
+Created visual assets, branding materials, and stage graphics
+
+Built strong foundations in creative thinking and visual communication
+
+Education
+
+Data Analysis with Power BI — AskMe Solutions | 2024 – Present
+Development of SCADA Systems for Production Processes — Rajamangala University of Technology Phra Nakhon | 2024 – Present
+Full-Stack JavaScript Web Development (CodeCamp #9) — Software Park Thailand | 2021
+Intensive 6-month bootcamp covering React, UX/UI, Node.js, MySQL, and web backend fundamentals
+
+Undergraduate Coursework — Chandrakasem Rajabhat University | 2013
+Programming, algorithms, databases, and system fundamentals
+
+Vocational Certificate in Electrical & Electronics — Tak Technical College | 2010
+Electronic circuits, electrical systems, and digital/analog fundamentals
+
+Technical Skills
+
+SharePoint 2019 (On-Premise), SharePoint Designer
+Power Platform (Power Automate, Power Apps)
+React, Next.js, JavaScript, TypeScript, jQuery
+C#, .NET Framework, SQL Server
+REST API, Git, HTML, CSS, Bootstrap
+UX/UI, Figma
+
+Professional Strengths
+
+Research-driven and analytical problem solving
+
+Clear, structured thinking in ambiguous situations
+
+Strong communication with both technical and non-technical stakeholders
+
+Ability to translate unclear requirements into practical, usable solutions
+
+Grounded execution informed by real operational experience

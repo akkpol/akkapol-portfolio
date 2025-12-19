@@ -62,8 +62,16 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json({ success: true, data: body })
   } catch (error) {
     console.error("Error updating profile:", error)
+    // Log detailed error for debugging
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    const errorStack = error instanceof Error ? error.stack : undefined
+    console.error("Error details:", { errorMessage, errorStack })
+    
     return NextResponse.json(
-      { error: "Failed to update profile data" },
+      { 
+        error: "Failed to update profile data",
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     )
   }

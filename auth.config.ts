@@ -16,18 +16,21 @@ if (!process.env.NEXTAUTH_SECRET) {
   throw new Error('NEXTAUTH_SECRET is required. Please set it in your environment variables.')
 }
 
-if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-  throw new Error('GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are required. Please set them in your environment variables.')
+// Google OAuth is optional for local development (required in production)
+const hasGoogleAuth = process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
+
+if (!hasGoogleAuth && process.env.NODE_ENV === 'production') {
+  throw new Error('GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET are required in production. Please set them in your environment variables.')
 }
 
 export const authConfig = {
   secret: process.env.NEXTAUTH_SECRET,
-  providers: [
+  providers: hasGoogleAuth ? [
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-  ],
+  ] : [],
   pages: {
     signIn: "/auth/signin",
   },
