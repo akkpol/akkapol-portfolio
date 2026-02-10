@@ -8,7 +8,7 @@ interface ExperienceFormProps {
 }
 
 export default function ExperienceForm({ data, onChange }: ExperienceFormProps) {
-  const updateExperience = (index: number, field: keyof Experience, value: any) => {
+  const updateExperience = <K extends keyof Experience>(index: number, field: K, value: Experience[K]) => {
     const newData = [...data]
     newData[index] = { ...newData[index], [field]: value }
     onChange(newData)

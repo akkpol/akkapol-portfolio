@@ -8,7 +8,7 @@ interface CertificationsFormProps {
 }
 
 export default function CertificationsForm({ data, onChange }: CertificationsFormProps) {
-  const updateCert = (index: number, field: keyof Certification, value: string) => {
+  const updateCert = <K extends keyof Certification>(index: number, field: K, value: Certification[K]) => {
     const newData = [...data]
     newData[index] = { ...newData[index], [field]: value }
     onChange(newData)
