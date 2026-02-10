@@ -8,7 +8,7 @@ interface EducationFormProps {
 }
 
 export default function EducationForm({ data, onChange }: EducationFormProps) {
-  const updateEducation = (index: number, field: keyof Education, value: string) => {
+  const updateEducation = <K extends keyof Education>(index: number, field: K, value: Education[K]) => {
     const newData = [...data]
     newData[index] = { ...newData[index], [field]: value }
     onChange(newData)
