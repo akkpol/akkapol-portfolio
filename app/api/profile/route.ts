@@ -3,6 +3,7 @@ import { auth } from "@/auth"
 import { doc, getDoc, setDoc } from "firebase/firestore"
 import { db } from "@/lib/firebase"
 import { LinkedInData } from "@/types"
+import { validateProfileData } from "@/utils/validation"
 
 // Force dynamic rendering (needed for auth)
 export const dynamic = 'force-dynamic'
@@ -47,10 +48,14 @@ export async function PUT(request: NextRequest) {
 
     const body: LinkedInData = await request.json()
     
-    // Validate data structure (basic validation)
-    if (!body.basics || !body.experience || !body.skills || !body.certifications || !body.education) {
+    // Validate data structure
+    const validation = validateProfileData(body)
+    if (!validation.success) {
       return NextResponse.json(
-        { error: "Invalid data structure" },
+        {
+          error: "Invalid data structure",
+          details: validation.errors
+        },
         { status: 400 }
       )
     }
