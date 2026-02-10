@@ -1,6 +1,14 @@
 'use client';
+import { useEffect } from 'react';
 import { Certification } from "@/types"
 import { Plus, Trash2 } from "lucide-react"
+
+const generateId = () => {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return Math.random().toString(36).substring(2, 9);
+};
 
 interface CertificationsFormProps {
   data: Certification[]
@@ -8,6 +16,14 @@ interface CertificationsFormProps {
 }
 
 export default function CertificationsForm({ data, onChange }: CertificationsFormProps) {
+  useEffect(() => {
+    const needsId = data.some(cert => !cert.id);
+    if (needsId) {
+      const newData = data.map(cert => cert.id ? cert : { ...cert, id: generateId() });
+      onChange(newData);
+    }
+  }, [data, onChange]);
+
   const updateCert = (index: number, field: keyof Certification, value: string) => {
     const newData = [...data]
     newData[index] = { ...newData[index], [field]: value }
@@ -15,7 +31,7 @@ export default function CertificationsForm({ data, onChange }: CertificationsFor
   }
 
   const addCert = () => {
-    onChange([...data, { name: '', issuer: '', year: '' }])
+    onChange([...data, { id: generateId(), name: '', issuer: '', year: '' }])
   }
 
   const removeCert = (index: number) => {
@@ -25,7 +41,7 @@ export default function CertificationsForm({ data, onChange }: CertificationsFor
   return (
     <div className="space-y-4">
       {data.map((cert, index) => (
-        <div key={index} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+        <div key={cert.id || index} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
               ใบรับรอง #{index + 1}
