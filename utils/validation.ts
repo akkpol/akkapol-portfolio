@@ -5,11 +5,11 @@ export type ValidationResult = {
   errors?: string[];
 };
 
-function isString(val: any): val is string {
+function isString(val: unknown): val is string {
   return typeof val === 'string';
 }
 
-function isArray(val: any): val is any[] {
+function isArray(val: unknown): val is unknown[] {
   return Array.isArray(val);
 }
 
