@@ -2,54 +2,79 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { motion } from "framer-motion";
 import { SkillGroup } from "@/types";
 
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  hidden: { opacity: 0, scale: 0.9 },
+  show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 100 } }
+};
+
 export function SkillsSection({ skills }: { skills: SkillGroup[] }) {
   return (
-    <section id="skills" className="px-6 py-16">
+    <section id="skills" className="relative px-6 py-24">
+       {/* Background */}
+       <div className="absolute left-0 bottom-0 -z-10 h-[40rem] w-[40rem] bg-accent-neon-purple/5 blur-[120px] rounded-full -translate-x-1/2 translate-y-1/2"></div>
+
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10 text-center">
-          <p className="text-sm uppercase tracking-[0.3em] text-accent-purple">Skills</p>
-          <h2 className="mt-2 font-display text-3xl font-semibold text-gray-900 dark:text-white sm:text-4xl">
-            Tooling & Capabilities
-          </h2>
-          <p className="mt-3 text-text-muted">
-            A blend of enterprise SharePoint, modern frontend, and automation skills that scale operations.
-          </p>
+        <div className="mb-16 text-center">
+          <motion.div
+             initial={{ opacity: 0, y: 20 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+          >
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-accent-neon-blue">Tech Stack</p>
+            <h2 className="mt-2 font-display text-4xl font-bold text-white sm:text-5xl">
+              Tools & <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-neon-purple to-accent-neon-pink">Technologies</span>
+            </h2>
+          </motion.div>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 auto-rows-fr"
+        >
           {skills.map((group, index) => (
-            <GlassCard key={`${group.title}-${index}`} className="p-6">
-              <div className="flex items-center justify-between">
-                <h3 className="font-display text-xl font-semibold text-gray-900 dark:text-white">{group.title}</h3>
-                <motion.span
-                  className="text-sm text-text-muted"
-                  animate={{ opacity: [0.6, 1, 0.6] }}
-                  transition={{ duration: 5, repeat: Infinity }}
-                >
-                  {group.items?.length || 0} tools
-                </motion.span>
-              </div>
-              <div className="mt-4 grid gap-3">
-                {group.items?.map((item, idx) => (
-                  <div key={`${item}-${idx}`} className="space-y-2">
-                    <div className="flex items-center justify-between text-sm text-text-primary/80">
-                      <p>{item}</p>
-                    </div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
-                      <motion.div
-                        className="h-full rounded-full bg-gradient-to-r from-accent-blue to-accent-purple"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: "100%" }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, ease: "easeOut" }}
-                      />
-                    </div>
+            <motion.div
+              key={group.title + index}
+              variants={item}
+              className={index === 0 || index === 3 || (index > 4 && index % 3 === 0) ? "lg:col-span-2" : ""}
+            >
+               {/* Bento Item */}
+               <GlassCard className="h-full p-8 hover:bg-white/10 hover:border-accent-neon-blue/30 transition-all duration-300 group relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                     {/* Abstract glow shape */}
+                     <div className="h-24 w-24 rounded-full bg-gradient-to-br from-accent-neon-blue to-accent-neon-purple blur-xl"></div>
                   </div>
-                ))}
-              </div>
-            </GlassCard>
+
+                  <h3 className="relative z-10 text-2xl font-bold text-white mb-6 group-hover:text-accent-neon-blue transition-colors">
+                    {group.title}
+                  </h3>
+
+                  <div className="relative z-10 flex flex-wrap gap-3">
+                    {group.items.map((skill) => (
+                      <span
+                        key={skill}
+                        className="rounded-lg border border-white/10 bg-black/20 px-3 py-1.5 text-sm font-medium text-gray-300 backdrop-blur-md transition-colors group-hover:border-accent-neon-blue/20 group-hover:bg-accent-neon-blue/5 group-hover:text-white"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+               </GlassCard>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
