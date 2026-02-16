@@ -1,20 +1,9 @@
-import { expect, test, describe, spyOn, beforeEach, type Mock } from "bun:test";
+import { expect, test, describe } from "bun:test";
 import { validateExperience } from "./validation";
 import { Experience } from "@/types";
 
 describe("validateExperience", () => {
-  let consoleSpy: Mock<any>;
-
-  beforeEach(() => {
-    // Mock console.error to verify error messages and keep test output clean
-    if (consoleSpy) {
-      consoleSpy.mockClear();
-    } else {
-      consoleSpy = spyOn(console, "error").mockImplementation(() => {});
-    }
-  });
-
-  test("should return true for a valid experience array", () => {
+  test("should pass for a valid experience array", () => {
     const experiences: Experience[] = [
       {
         title: "Software Engineer",
@@ -25,16 +14,18 @@ describe("validateExperience", () => {
         highlights: ["Developed features"],
       },
     ];
-    expect(validateExperience(experiences)).toBe(true);
-    expect(consoleSpy).not.toHaveBeenCalled();
+    const errors: string[] = [];
+    validateExperience(experiences, errors);
+    expect(errors.length).toBe(0);
   });
 
-  test("should return true for an empty array", () => {
-    expect(validateExperience([])).toBe(true);
-    expect(consoleSpy).not.toHaveBeenCalled();
+  test("should pass for an empty array", () => {
+    const errors: string[] = [];
+    validateExperience([], errors);
+    expect(errors.length).toBe(0);
   });
 
-  test("should return false if title is missing", () => {
+  test("should fail if title is missing", () => {
     const experiences: any[] = [
       {
         company: "Tech Corp",
@@ -44,13 +35,13 @@ describe("validateExperience", () => {
         highlights: [],
       },
     ];
-    expect(validateExperience(experiences as Experience[])).toBe(false);
-    expect(consoleSpy).toHaveBeenCalled();
-    const errorMessage = consoleSpy.mock.calls[0][0];
-    expect(errorMessage).toContain("Error: Experience 0 title is required");
+    const errors: string[] = [];
+    validateExperience(experiences as Experience[], errors);
+    expect(errors.length).toBeGreaterThan(0);
+    expect(errors).toContain("Experience[0]: title is required");
   });
 
-  test("should return false if title is empty string", () => {
+  test("should fail if title is empty string", () => {
     const experiences: Experience[] = [
       {
         title: "",
@@ -61,13 +52,13 @@ describe("validateExperience", () => {
         highlights: [],
       },
     ];
-    expect(validateExperience(experiences)).toBe(false);
-    expect(consoleSpy).toHaveBeenCalled();
-    const errorMessage = consoleSpy.mock.calls[0][0];
-    expect(errorMessage).toContain("Error: Experience 0 title is required");
+    const errors: string[] = [];
+    validateExperience(experiences, errors);
+    expect(errors.length).toBeGreaterThan(0);
+    expect(errors).toContain("Experience[0]: title is required");
   });
 
-  test("should return false if title is only whitespace", () => {
+  test("should fail if title is only whitespace", () => {
     const experiences: Experience[] = [
       {
         title: "   ",
@@ -78,13 +69,13 @@ describe("validateExperience", () => {
         highlights: [],
       },
     ];
-    expect(validateExperience(experiences)).toBe(false);
-    expect(consoleSpy).toHaveBeenCalled();
-    const errorMessage = consoleSpy.mock.calls[0][0];
-    expect(errorMessage).toContain("Error: Experience 0 title is required");
+    const errors: string[] = [];
+    validateExperience(experiences, errors);
+    expect(errors.length).toBeGreaterThan(0);
+    expect(errors).toContain("Experience[0]: title is required");
   });
 
-  test("should return false if company is missing", () => {
+  test("should fail if company is missing", () => {
     const experiences: any[] = [
       {
         title: "Software Engineer",
@@ -94,13 +85,13 @@ describe("validateExperience", () => {
         highlights: [],
       },
     ];
-    expect(validateExperience(experiences as Experience[])).toBe(false);
-    expect(consoleSpy).toHaveBeenCalled();
-    const errorMessage = consoleSpy.mock.calls[0][0];
-    expect(errorMessage).toContain("Error: Experience 0 company is required");
+    const errors: string[] = [];
+    validateExperience(experiences as Experience[], errors);
+    expect(errors.length).toBeGreaterThan(0);
+    expect(errors).toContain("Experience[0]: company is required");
   });
 
-  test("should return false if company is empty string", () => {
+  test("should fail if company is empty string", () => {
     const experiences: Experience[] = [
       {
         title: "Software Engineer",
@@ -111,13 +102,13 @@ describe("validateExperience", () => {
         highlights: [],
       },
     ];
-    expect(validateExperience(experiences)).toBe(false);
-    expect(consoleSpy).toHaveBeenCalled();
-    const errorMessage = consoleSpy.mock.calls[0][0];
-    expect(errorMessage).toContain("Error: Experience 0 company is required");
+    const errors: string[] = [];
+    validateExperience(experiences, errors);
+    expect(errors.length).toBeGreaterThan(0);
+    expect(errors).toContain("Experience[0]: company is required");
   });
 
-  test("should return false if any experience in the array is invalid", () => {
+  test("should fail if any experience in the array is invalid", () => {
     const experiences: Experience[] = [
       {
         title: "Software Engineer",
@@ -136,9 +127,9 @@ describe("validateExperience", () => {
         highlights: [],
       },
     ];
-    expect(validateExperience(experiences)).toBe(false);
-    expect(consoleSpy).toHaveBeenCalled();
-    const errorMessage = consoleSpy.mock.calls[0][0];
-    expect(errorMessage).toContain("Error: Experience 1 title is required");
+    const errors: string[] = [];
+    validateExperience(experiences, errors);
+    expect(errors.length).toBeGreaterThan(0);
+    expect(errors).toContain("Experience[1]: title is required");
   });
 });
