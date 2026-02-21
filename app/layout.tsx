@@ -4,6 +4,7 @@ import Providers from "@/components/Providers";
 import SiteBackground from "@/components/ui/SiteBackground";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { Header } from "@/components/layout/Header";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "Akkapol Portfolio",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className="relative">{children}</main>
           </Providers>
         </ErrorBoundary>
+        <SpeedInsights />
       </body>
     </html>
   );
