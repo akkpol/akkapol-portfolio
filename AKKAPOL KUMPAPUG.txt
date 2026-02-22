@@ -1,115 +1,107 @@
 AKKAPOL KUMPAPUG
 
-AI-Assisted Problem Solver | Research-Driven Thinking | Clear, Practical Execution
+AI Solutions Architect | Tech Integrator | Business Operations Optimizer
 
-Nonthaburi, Thailand
-📞 096-119-5161
-📧 akkapol.kumpapug@gmail.com
+📍 Nonthaburi, Thailand | 📞 096-119-5161 | 📧 akkapol.kumpapug@gmail.com
+🔗 LinkedIn: linkedin.com/in/akkapol-kumpapug
+🌐 Portfolio: akkapol-portfolio.vercel.app
 
-🔗 LinkedIn: https://www.linkedin.com/in/akkapol-kumpapug
+EXECUTIVE SUMMARY
 
-🌐 Portfolio: https://akkapol-portfolio.vercel.app
+AI & Tech Integrator specializing in bringing Enterprise-grade automation and AI Agents to SMEs. As an independent consultant, I focus on building intelligent workflows that elevate decision-making and drive operational efficiency. Rather than simply writing code to spec, I act as a strategic reasoning partner—clarifying complex business challenges and translating them into practical, scalable tech solutions. Grounded in a unique blend of real-world systems execution, software engineering, and business operations, I bridge the gap between cutting-edge AI technology and sound human judgment to deliver measurable, long-term business value.
 
-Executive Summary
+TECHNICAL & STRATEGIC SKILLS
 
-AI & Tech Integrator specializing in bringing Enterprise-grade automation and AI Agents to SMEs.
- Operating under AK3 Studio, I focus on building intelligent workflows that elevate decision-making and drive operational efficiency. 
- Rather than simply accelerating tasks, I act as a reasoning partner to clarify complex business challenges and turn them into practical,
- scalable tech solutions. Grounded in real-world systems execution, I bridge the gap between cutting-edge AI technology and sound human judgment to deliver long-term business value.
+AI & Automation Stack: AI Agents & LLM Integration, Private AI / Local LLM Deployment, Prompt Engineering, AI-Assisted IDEs (Cursor), Workflow Automation (n8n/Make concepts), Google AI Ecosystem
 
-Professional Experience
-AI-Assisted Problem Solver (Independent)
-Present
-Research-driven problem analysis using AI as a thinking and reasoning partner
+Enterprise Platforms: Power Platform (Power Automate, Power Apps), SharePoint 2019 (On-Premise), SharePoint Designer
 
-Clarifying ambiguous problems, testing assumptions, and supporting sound decisions
+Frontend Development: React, Next.js, JavaScript, TypeScript, jQuery, HTML/CSS, Tailwind, Bootstrap, Material UI, Ant Design
 
-Translating insights into clear, practical directions grounded in real execution
+Backend & Data: C#, .NET Framework, SQL Server, REST APIs, System Integration
 
-Self-directed exploration of AI-assisted workflows focused on decision quality and long-term value
+Design & Tools: UX/UI Design, Figma, Git, Visual Communication
 
-Information Technology Programmer / SharePoint & Power Platform Developer
+PROFESSIONAL EXPERIENCE
 
+Independent AI Solutions Architect
+Freelance Consultant | Nonthaburi | Nov 2023 – Present
+
+Act as a strategic reasoning partner for businesses, utilizing AI and systems thinking to clarify ambiguous problems and test operational assumptions.
+
+Design and deploy Private AI infrastructures (Local LLMs & Open-source models) for organizations requiring strict data privacy and secure internal workflows.
+
+Design and implement intelligent workflows and automation systems that optimize decision quality and reduce manual overhead.
+
+Translate complex data and business insights into clear, practical technical directions grounded in realistic execution capabilities.
+
+Continuously research and integrate modern AI-assisted workflows (e.g., Cursor, Google AI ecosystem, LLM-based agents) to deliver high-value tech solutions for SMEs.
+
+Systems Integrator / SharePoint & Power Platform Developer
 C.C.S. Advance Tech Co., Ltd. | Nonthaburi | Nov 2022 – Nov 2025
 
-Developed and maintained enterprise systems on SharePoint 2019 On-Premise
+Architected and maintained robust enterprise systems on SharePoint 2019 On-Premise, supporting cross-functional departmental needs.
 
-Automated workflows using Power Automate to reduce manual processes
+Designed automated workflows using Power Automate, effectively eliminating manual data entry bottlenecks and significantly accelerating process approval times.
 
-Built custom forms and interfaces using JavaScript, jQuery, HTML, and CSS
+Built intuitive custom forms and modern user interfaces (using JavaScript, jQuery, HTML, CSS) tailored to specific user experiences.
 
-Integrated SharePoint lists, legacy data, and business requirements into scalable digital tools
+Successfully integrated legacy database systems with modern SharePoint lists, transforming fragmented business requirements into scalable digital tools.
 
-Collaborated with cross-functional teams to define requirements and prioritize development tasks
-
-Front-End Developer
-
+Front-End Web Developer
 Absolute Solution Co., Ltd. | Bangkok | Nov 2021 – Jul 2022
 
-Developed user interfaces using React, Next.js, Ant Design, and Material UI
+Developed dynamic, responsive user interfaces using React, Next.js, Ant Design, and Material UI, enhancing overall user engagement.
 
-Integrated REST APIs to support real-time data operations
+Integrated complex REST APIs to support real-time data operations, ensuring seamless communication between front-end and backend architectures.
 
-Participated in Agile workflows and collaborated with designers and backend developers
+Collaborated effectively within Agile workflows alongside designers and backend developers to deliver features on schedule.
 
 Operations Manager
-
 Frozen Restaurant | Kalasin | Oct 2018 – Dec 2020
 
-Managed daily operations, staff coordination, and resource planning
+Managed end-to-end daily operations, staff coordination, and resource planning in a fast-paced environment.
 
-Improved operational workflows and overall team performance
+Identified operational bottlenecks and redesigned workflows to improve team performance and service delivery.
 
-Gained hands-on experience in decision-making under real operational constraints
+Key Takeaway: Gained hands-on executive experience in decision-making under real operational constraints, deeply informing my current approach to practical tech solutions.
 
 Junior .NET Developer
-
 Auction Trade Co., Ltd. | Bangkok | Oct 2015 – Feb 2018
 
-Developed internal systems using C#, .NET Framework, and SQL Server
+Developed and maintained internal enterprise systems utilizing C#, .NET Framework, and SQL Server.
 
-Fixed bugs, optimized legacy code, and improved system stability
-
-Supported database operations and ongoing system maintenance
+Proactively identified and resolved critical bugs, optimized legacy code, and improved overall system stability and performance.
 
 Graphic Designer
-
 Manta Performing Arts | Dec 2013 – Dec 2014
 
-Created visual assets, branding materials, and stage graphics
+Created visual assets, branding materials, and stage graphics.
 
-Built strong foundations in creative thinking and visual communication
+Built a strong foundation in creative thinking, visual communication, and user-centric design principles.
 
-Education
+EDUCATION & CERTIFICATIONS
 
-Data Analysis with Power BI — AskMe Solutions | 2024 – Present
-Development of SCADA Systems for Production Processes — Rajamangala University of Technology Phra Nakhon | 2024 – Present
-Full-Stack JavaScript Web Development (CodeCamp #9) — Software Park Thailand | 2021
-Intensive 6-month bootcamp covering React, UX/UI, Node.js, MySQL, and web backend fundamentals
+Data Analysis with Power BI — AskMe Solutions (2024 – Present)
 
-Undergraduate Coursework — Chandrakasem Rajabhat University | 2013
-Programming, algorithms, databases, and system fundamentals
+Development of SCADA Systems for Production Processes — Rajamangala University of Technology Phra Nakhon (2024 – Present)
 
-Vocational Certificate in Electrical & Electronics — Tak Technical College | 2010
-Electronic circuits, electrical systems, and digital/analog fundamentals
+Full-Stack JavaScript Web Development (CodeCamp #9) — Software Park Thailand (2021)
 
-Technical Skills
+Intensive 6-month bootcamp covering React, UX/UI, Node.js, MySQL, and web backend fundamentals.
 
-SharePoint 2019 (On-Premise), SharePoint Designer
-Power Platform (Power Automate, Power Apps)
-React, Next.js, JavaScript, TypeScript, jQuery
-C#, .NET Framework, SQL Server
-REST API, Git, HTML, CSS, Bootstrap
-UX/UI, Figma
+Undergraduate Coursework (Computer Science/IT) — Chandrakasem Rajabhat University (2013)
 
-Professional Strengths
+Programming, algorithms, databases, and system fundamentals.
 
-Research-driven and analytical problem solving
+Vocational Certificate in Electrical & Electronics — Tak Technical College (2010)
 
-Clear, structured thinking in ambiguous situations
+Electronic circuits, electrical systems, and digital/analog fundamentals.
 
-Strong communication with both technical and non-technical stakeholders
+PROFESSIONAL STRENGTHS
 
-Ability to translate unclear requirements into practical, usable solutions
+Research-Driven Analysis: Ability to break down complex, ambiguous situations into structured, solvable components.
 
-Grounded execution informed by real operational experience
+Cross-Disciplinary Communication: Fluent in translating highly technical concepts for non-technical stakeholders (and vice versa).
+
+Pragmatic Execution: Designing solutions that are not just technologically advanced, but highly usable and informed by real-world operational constraints.
