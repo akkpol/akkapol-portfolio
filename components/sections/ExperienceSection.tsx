@@ -1,75 +1,93 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import { motion } from "framer-motion";
 import { Experience } from "@/types";
+import { Briefcase, Calendar, MapPin } from "lucide-react";
 
 export function ExperienceSection({ experience }: { experience: Experience[] }) {
   return (
     <section id="experience" className="relative px-6 py-24 overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 -z-10 h-[30rem] w-[30rem] bg-accent-neon-blue/5 blur-[100px] rounded-full translate-x-1/2 -translate-y-1/2"></div>
+      {/* Background organic glows */}
+      <div className="absolute top-[20%] right-[-10%] -z-10 h-[40rem] w-[40rem] bg-accent-neon-purple/10 blur-[120px] rounded-full animate-blob"></div>
+      <div className="absolute bottom-[10%] left-[-5%] -z-10 h-[30rem] w-[30rem] bg-accent-neon-blue/10 blur-[100px] rounded-full animate-blob animation-delay-4000"></div>
 
-      <div className="mx-auto max-w-5xl">
-        <div className="mb-16 text-center">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-16 text-center lg:text-left flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="inline-block"
+            className="flex-1"
           >
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-accent-neon-purple">Career Path</p>
-            <h2 className="mt-2 font-display text-4xl font-bold text-white sm:text-5xl">
-              Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-neon-blue to-accent-neon-purple">Experience</span>
+            <p className="text-sm font-bold uppercase tracking-[0.4em] text-accent-neon-blue font-display">Trajectory</p>
+            <h2 className="mt-2 font-display text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+              Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-neon-blue to-accent-neon-purple">Journey</span>
             </h2>
           </motion.div>
+          <motion.p
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-text-muted max-w-md text-lg lg:text-right font-body"
+          >
+            A history of building scalable solutions and driving digital transformation through clean code and AI focus.
+          </motion.p>
         </div>
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-4 top-4 bottom-0 w-0.5 bg-gradient-to-b from-accent-neon-blue via-accent-neon-purple to-transparent md:left-1/2 md:-ml-px" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {experience.map((exp, index) => (
+            <motion.div
+              key={exp.company + index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="h-full"
+            >
+              <GlassCard className="h-full p-8 flex flex-col border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-accent-neon-blue/30 transition-all group overflow-hidden relative">
+                {/* Decorative background element */}
+                <div className="absolute -top-12 -right-12 w-32 h-32 bg-accent-neon-blue/5 rounded-full blur-2xl group-hover:bg-accent-neon-blue/10 transition-colors" />
 
-          <div className="space-y-12">
-            {experience.map((exp, index) => (
-              <motion.div
-                key={exp.company + index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex items-center justify-between md:justify-normal ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-4 -translate-x-1/2 md:left-1/2 h-4 w-4 rounded-full border-2 border-accent-neon-blue bg-background shadow-[0_0_10px_rgba(0,240,255,0.8)] z-10">
-                  <div className="absolute inset-0 animate-ping rounded-full bg-accent-neon-blue opacity-50"></div>
+                <div className="flex flex-col gap-4 relative z-10">
+                  <div className="flex justify-between items-start gap-4">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2 text-accent-neon-blue font-display text-xs font-bold uppercase tracking-wider">
+                        <Calendar size={14} className="shrink-0" />
+                        <span>{exp.startDate} — {exp.endDate}</span>
+                      </div>
+                      <h3 className="mt-2 text-2xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-neon-blue group-hover:to-accent-neon-purple transition-all duration-300 font-display leading-tight">
+                        {exp.title}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-4 items-center text-sm text-text-muted">
+                    <div className="flex items-center gap-1.5 font-medium">
+                      <Briefcase size={14} className="text-accent-neon-purple" />
+                      {exp.company}
+                    </div>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin size={14} className="text-accent-neon-blue" />
+                      {exp.location}
+                    </div>
+                  </div>
+
+                  <div className="h-px w-full bg-gradient-to-r from-white/10 to-transparent my-2" />
+
+                  <ul className="space-y-3 flex-grow">
+                    {exp.highlights.slice(0, 4).map((bullet, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-sm leading-relaxed text-gray-400 group-hover:text-gray-300 transition-colors font-body">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-tr from-accent-neon-blue to-accent-neon-purple shadow-[0_0_8px_rgba(0,240,255,0.4)]" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-
-                {/* Content Side */}
-                <div className={`ml-12 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:pl-8' : 'md:pr-8'}`}>
-                  <GlassCard className="p-6 md:p-8 hover:border-accent-neon-blue/30 hover:shadow-[0_10px_40px_-10px_rgba(0,240,255,0.1)] transition-all duration-300 group">
-                    <span className="mb-2 inline-block rounded-full bg-white/5 px-3 py-1 text-xs font-medium text-accent-neon-blue backdrop-blur-sm">
-                      {exp.startDate} - {exp.endDate}
-                    </span>
-                    <h3 className="mt-2 text-xl font-bold text-white group-hover:text-accent-neon-blue transition-colors">{exp.title}</h3>
-                    <p className="text-lg font-medium text-gray-400">{exp.company}</p>
-                    <p className="text-sm text-gray-500 mb-4">{exp.location}</p>
-
-                    <ul className="mt-4 space-y-2 text-sm text-gray-300 leading-relaxed text-left">
-                      {exp.highlights.slice(0, 3).map((bullet, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                           <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-neon-purple" />
-                           <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </GlassCard>
-                </div>
-
-                {/* Spacer Side for Desktop */}
-                <div className="hidden md:block md:w-5/12" />
-              </motion.div>
-            ))}
-          </div>
+              </GlassCard>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+

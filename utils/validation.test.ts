@@ -1,4 +1,4 @@
-import { expect, test, describe } from "bun:test";
+import { expect, test, describe } from "vitest";
 import { validateExperience } from "./validation";
 import { Experience } from "@/types";
 

@@ -2,108 +2,157 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body { 
-  min-height: 100%; 
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
+/* === Base & Typography === */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 228 9% 14%;
+    /* #202124 */
 
-:root {
-  --background: #ffffff;
-  --surface: #f3f4f6;
-  --surface-muted: rgba(243, 244, 246, 0.85);
-  --text-primary: #111827;
-  --text-muted: #6b7280;
-}
+    --card: 0 0% 100%;
+    --card-foreground: 228 9% 14%;
 
-.dark {
-  --background: #050816;
-  --surface: #0F172A;
-  --surface-muted: rgba(15, 23, 42, 0.85);
-  --text-primary: #E5E7EB;
-  --text-muted: #9CA3AF;
-}
+    --popover: 0 0% 100%;
+    --popover-foreground: 228 9% 14%;
 
-body {
-  background-color: var(--background);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
+    --primary: 217 89% 61%;
+    /* #4285F4 */
+    --primary-foreground: 0 0% 100%;
 
-/* Gradient Text Utilities */
-.gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    --secondary: 210 16% 93%;
+    /* #e8eaed */
+    --secondary-foreground: 228 9% 14%;
 
-.gradient-text-blue {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    --muted: 210 16% 96%;
+    --muted-foreground: 214 5% 39%;
+    /* #5f6368 */
 
-.gradient-text-purple {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    --accent: 210 16% 96%;
+    --accent-foreground: 228 9% 14%;
 
-.gradient-text-teal {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-.dark .gradient-text {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    --border: 210 16% 93%;
+    /* #e8eaed */
+    --input: 210 16% 93%;
+    --ring: 217 89% 61%;
+    /* primary blue */
 
-.dark .gradient-text-blue {
-  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.dark .gradient-text-purple {
-  background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.dark .gradient-text-teal {
-  background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Animated Gradient Background */
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
+    --radius: 1rem;
   }
-  50% {
-    background-position: 100% 50%;
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    /* Deep space black */
+    --foreground: 210 40% 98%;
+    /* Crisp white */
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    /* Vivid blue */
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-family: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 3s ease infinite;
-}
+/* === Custom Utilities & Components === */
+@layer components {
+  .hero-gradient {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.3), hsla(0, 0%, 100%, 0));
+  }
 
-.noise-overlay {
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' fill-opacity='0.15'%3E%3Cpath d='M0 0h160v160H0z'/%3E%3Cg fill='%23fff'%3E%3Ccircle cx='10' cy='10' r='1'/%3E%3Ccircle cx='50' cy='30' r='1'/%3E%3Ccircle cx='80' cy='90' r='1'/%3E%3Ccircle cx='120' cy='70' r='1'/%3E%3Ccircle cx='140' cy='140' r='1'/%3E%3C/g%3E%3C/svg%3E");
-  opacity: 0.25;
-  mix-blend-mode: soft-light;
+  .dark .hero-gradient {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 119, 198, 0.3), rgba(255, 255, 255, 0));
+  }
+
+  .celestial-background {
+    background-color: #000;
+    background-image:
+      radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+      radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+      radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+      radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    animation: move-background 150s linear infinite;
+  }
+
+  @keyframes move-background {
+    from {
+      background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    }
+
+    to {
+      background-position: 550px 550px, 390px 410px, 280px 520px, 220px 350px;
+    }
+  }
+
+  /* Text Gradients */
+  .gradient-text-blue-purple {
+    @apply bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .dark .gradient-text-blue-purple {
+    @apply from-blue-400 to-purple-500;
+  }
+
+  .gradient-text-pink-orange {
+    @apply bg-gradient-to-r from-pink-500 to-orange-500 bg-clip-text text-transparent;
+  }
+
+  .dark .gradient-text-pink-orange {
+    @apply from-pink-400 to-orange-400;
+  }
+
+  .gradient-text-green-teal {
+    @apply bg-gradient-to-r from-green-400 to-teal-500 bg-clip-text text-transparent;
+  }
+
+  .dark .gradient-text-green-teal {
+    @apply from-green-300 to-teal-400;
+  }
+
+  /* Animation Delays */
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
 }

@@ -2,12 +2,37 @@ node_modules/
 .next/
 out/
 dist/
-.env*
+build/
+*.tsbuildinfo
+
+# OS
 .DS_Store
+Thumbs.db
+
+# Environment
+.env*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 npm-debug.log*
 yarn-*.log*
 pnpm-debug.log*
 
+# Testing
+/playwright-report
+/test-results
+/coverage
+/.nyc_output
+
+# AI & Gemini
+.gemini/
+.agents/
+
+# Logic
+.vscode/mcp.json
+.vscode/settings.json
+.next-intl/
 
 #Ignore vscode AI rules
 .github\instructions\codacy.instructions.md

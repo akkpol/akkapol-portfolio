@@ -12,13 +12,14 @@ Nonthaburi, Thailand
 
 Executive Summary
 
-AI-assisted problem solver with a strong execution background in enterprise systems and internal tools. I focus on using AI to improve the quality of thinking and decision-making, rather than simply accelerating execution. My approach emphasizes asking the right questions, reducing cognitive blind spots, and testing assumptions before action. I work with AI as a research and thinking partner to turn complex or ambiguous situations into clear, practical directions. With hands-on experience in building and operating real systems, I believe long-term value comes from combining modern technology with sound human judgment.
+AI & Tech Integrator specializing in bringing Enterprise-grade automation and AI Agents to SMEs.
+ Operating under AK3 Studio, I focus on building intelligent workflows that elevate decision-making and drive operational efficiency. 
+ Rather than simply accelerating tasks, I act as a reasoning partner to clarify complex business challenges and turn them into practical,
+ scalable tech solutions. Grounded in real-world systems execution, I bridge the gap between cutting-edge AI technology and sound human judgment to deliver long-term business value.
 
 Professional Experience
 AI-Assisted Problem Solver (Independent)
-
 Present
-
 Research-driven problem analysis using AI as a thinking and reasoning partner
 
 Clarifying ambiguous problems, testing assumptions, and supporting sound decisions
