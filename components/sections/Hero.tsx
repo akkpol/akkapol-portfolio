@@ -3,6 +3,7 @@ import { PrimaryButton, SecondaryButton } from "@/components/ui/PrimaryButton";
 import { Basics } from "@/types";
 import TiltCard from "@/components/TiltCard";
 import LiquidImage from "@/components/ui/LiquidImage";
+import TreeLightningCanvas from "@/components/ui/TreeLightningCanvas";
 
 const heroContainer = {
   hidden: { opacity: 0 },
@@ -23,8 +24,9 @@ const heroItem = {
 export function HeroSection({ basics }: { basics: Basics }) {
   return (
     <section id="hero" className="relative isolate min-h-[90vh] flex items-center justify-center overflow-hidden px-6 pt-20 pb-16">
-      {/* Organic Background Blobs */}
+      {/* Animated tree-style background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
+        <TreeLightningCanvas />
         <div className="absolute top-[-10%] left-[-10%] h-[40rem] w-[40rem] rounded-full bg-accent-neon-blue/20 blur-[100px] animate-blob mix-blend-screen" />
         <div className="absolute bottom-[-10%] right-[-10%] h-[40rem] w-[40rem] rounded-full bg-accent-neon-purple/20 blur-[100px] animate-blob animation-delay-2000 mix-blend-screen" />
         <div className="absolute top-[40%] left-[30%] h-[30rem] w-[30rem] rounded-full bg-accent-neon-pink/20 blur-[100px] animate-blob animation-delay-4000 mix-blend-screen" />
@@ -123,9 +125,6 @@ export function HeroSection({ basics }: { basics: Basics }) {
                   />
                 </div>
               </div>
-
-              {/* Holographic Overlay Effects */}
-// ... existing code ...
 
               {/* Holographic Overlay Effects */}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />

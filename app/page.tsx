@@ -5,8 +5,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 
-// Dynamically import ThreeFaceCanvas to avoid SSR issues with window/document
-const ThreeFaceCanvas = dynamic(() => import("@/components/ui/ThreeFaceCanvas"), {
+// Dynamically import tree animation canvas to avoid SSR issues with window/document
+const TreeLightningCanvas = dynamic(() => import("@/components/ui/TreeLightningCanvas"), {
   ssr: false,
 });
 
@@ -145,7 +145,7 @@ export default function Home() {
 
   return (
     <>
-      <ThreeFaceCanvas />
+      <TreeLightningCanvas />
 
       <ServiceNavigation />
 
