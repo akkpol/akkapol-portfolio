@@ -1,6 +1,6 @@
 'use client';
 import { useSession, signOut } from "next-auth/react"
-import { LogIn, LogOut, User } from "lucide-react"
+import { LogIn, LogOut, User, Loader2 } from "lucide-react"
 import { useState } from "react"
 import Link from "next/link"
 
@@ -51,10 +51,11 @@ export default function AuthButton() {
         <button
           onClick={handleSignOut}
           disabled={isLoading}
-          className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-50"
+          aria-busy={isLoading}
+          className="inline-flex items-center gap-2 px-3 py-1.5 text-sm rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <LogOut size={16} />
-          <span className="hidden sm:inline">Sign Out</span>
+          {isLoading ? <Loader2 size={16} className="animate-spin" /> : <LogOut size={16} />}
+          <span className="hidden sm:inline">{isLoading ? "Signing Out..." : "Sign Out"}</span>
         </button>
       </div>
     )
