@@ -71,7 +71,11 @@ export default function InteractiveAIConsultant() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth z-10">
+            <div
+                className="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth z-10"
+                role="log"
+                aria-live="polite"
+            >
                 <AnimatePresence initial={false}>
                     {messages.map((msg, index) => (
                         <motion.div
@@ -138,14 +142,20 @@ export default function InteractiveAIConsultant() {
                         onChange={(e) => setInput(e.target.value)}
                         disabled={isLoading}
                         placeholder={isLoading ? "Please wait..." : "พิมพ์ข้อความที่นี่..."}
+                        aria-label="พิมพ์ข้อความที่นี่..."
                         className="w-full bg-input text-foreground border border-border rounded-full pl-6 pr-14 py-3.5 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all shadow-sm placeholder:text-muted-foreground disabled:opacity-60"
                     />
                     <button
                         type="submit"
                         disabled={!input.trim() || isLoading}
+                        aria-label={isLoading ? "กำลังส่งข้อความ" : "ส่งข้อความ"}
                         className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-foreground/80 disabled:opacity-50 disabled:hover:bg-foreground transition-all shrink-0"
                     >
-                        <Send className="w-4 h-4 translate-x-px" />
+                        {isLoading ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                            <Send className="w-4 h-4 translate-x-px" />
+                        )}
                     </button>
                 </form>
                 <p className="text-center text-[10px] text-muted-foreground mt-3 font-medium">
