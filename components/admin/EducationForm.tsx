@@ -32,6 +32,7 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
             </h3>
             <button
               onClick={() => removeEducation(index)}
+              aria-label="Remove education"
               className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
             >
               <Trash2 size={16} />
