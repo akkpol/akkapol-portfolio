@@ -60,6 +60,7 @@ export default function ExperienceForm({ data, onChange }: ExperienceFormProps) 
             </h3>
             <button
               onClick={() => removeExperience(expIndex)}
+              aria-label="Remove experience"
               className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
             >
               <Trash2 size={18} />
@@ -143,6 +144,7 @@ export default function ExperienceForm({ data, onChange }: ExperienceFormProps) 
                   />
                   <button
                     onClick={() => removeHighlight(expIndex, highlightIndex)}
+                    aria-label="Remove highlight"
                     className="px-3 py-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
                   >
                     <Trash2 size={16} />

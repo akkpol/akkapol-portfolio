@@ -48,6 +48,7 @@ export default function CertificationsForm({ data, onChange }: CertificationsFor
             </h3>
             <button
               onClick={() => removeCert(index)}
+              aria-label="Remove certification"
               className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
             >
               <Trash2 size={16} />
