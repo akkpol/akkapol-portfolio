@@ -52,10 +52,11 @@ export default function ProfileForm({ data, onChange }: ProfileFormProps) {
                   />
                   <button
                     onClick={() => updateField('image', '')}
-                    className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                    className="absolute -top-2 -right-2 bg-red-500 text-white p-1 rounded-full shadow-sm opacity-0 group-hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 transition-opacity z-10"
                     title="Remove image"
+                    aria-label="Remove image"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
                   </button>
                 </div>
               </TiltCard>
@@ -209,7 +210,8 @@ export default function ProfileForm({ data, onChange }: ProfileFormProps) {
               />
               <button
                 onClick={() => removeKeyword(index)}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                aria-label={`ลบ Keyword ${keyword}`}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900"
               >
                 ลบ
               </button>

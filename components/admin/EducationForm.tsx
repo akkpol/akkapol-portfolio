@@ -32,9 +32,11 @@ export default function EducationForm({ data, onChange }: EducationFormProps) {
             </h3>
             <button
               onClick={() => removeEducation(index)}
-              className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+              aria-label={`ลบการศึกษา ${index + 1}`}
+              title="ลบการศึกษา"
+              className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
             >
-              <Trash2 size={16} />
+              <Trash2 size={16} aria-hidden="true" />
             </button>
           </div>
 

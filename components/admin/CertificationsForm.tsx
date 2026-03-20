@@ -48,9 +48,11 @@ export default function CertificationsForm({ data, onChange }: CertificationsFor
             </h3>
             <button
               onClick={() => removeCert(index)}
-              className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+              aria-label={`ลบใบรับรอง ${index + 1}`}
+              title="ลบใบรับรอง"
+              className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
             >
-              <Trash2 size={16} />
+              <Trash2 size={16} aria-hidden="true" />
             </button>
           </div>
 
