@@ -60,7 +60,9 @@ export default function ExperienceForm({ data, onChange }: ExperienceFormProps) 
             </h3>
             <button
               onClick={() => removeExperience(expIndex)}
-              className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+              aria-label="Delete experience"
+              title="Delete experience"
+              className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
             >
               <Trash2 size={18} />
             </button>
@@ -143,7 +145,9 @@ export default function ExperienceForm({ data, onChange }: ExperienceFormProps) 
                   />
                   <button
                     onClick={() => removeHighlight(expIndex, highlightIndex)}
-                    className="px-3 py-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                    aria-label="Delete highlight"
+                    title="Delete highlight"
+                    className="px-3 py-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500"
                   >
                     <Trash2 size={16} />
                   </button>
