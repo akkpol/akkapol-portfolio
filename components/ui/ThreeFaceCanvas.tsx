@@ -500,8 +500,8 @@ export default function ThreeFaceCanvas() {
       }
 
       // Clear unused
-      for (let i = connectionIndex * 6; i < MAX_CONNECTIONS * 6; i++) lPosArr[i] = 0;
-      for (let i = connectionIndex * 2; i < MAX_CONNECTIONS * 2; i++) lAlpArr[i] = 0;
+      lPosArr.fill(0, connectionIndex * 6, MAX_CONNECTIONS * 6);
+      lAlpArr.fill(0, connectionIndex * 2, MAX_CONNECTIONS * 2);
 
       lPos.needsUpdate = true;
       lAlp.needsUpdate = true;
